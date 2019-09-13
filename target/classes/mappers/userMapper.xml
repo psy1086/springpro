@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.company.mapper.memberMapper">
+	
+	<select id="selectuser" resultType="userDTO">
+		SELECT * FROM user
+	</select>
+	
+	<insert id="userRegister" parameterType="userDTO">
+		INSERT INTO test (userId, userPassword, userName, userEmail) VALUES (
+			#{userId},
+			#{userPassword},
+			#{userName},
+			#{userEmail}
+		)
+	</insert>
+</mapper>
