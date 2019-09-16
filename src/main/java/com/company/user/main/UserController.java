@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.company.user.dto.UserDTO;
 import com.company.user.service.UserService;
@@ -36,17 +37,21 @@ public class UserController {
 //		return "home";
 //	}
 	@RequestMapping(value="userLogin", method=RequestMethod.POST) 
-	public String userLogin(UserDTO userDTO, HttpServletRequest req) throws Exception {
+	public ModelAndView userLogin(UserDTO userDTO, HttpServletRequest req) throws Exception {
 		logger.info("userLogin Action");
+		ModelAndView mv = new ModelAndView();
 		HttpSession httpSession = req.getSession();
 		UserDTO login = userService.userLogin(userDTO);
 		if(login == null) {
+			mv.setViewName("otherPage/userLogin");
 			httpSession.setAttribute("user", null);
-			return "otherPage/userLogin";
+			return mv;
 		}
 		else {
-			httpSession.setAttribute("user", login);
-			return "home";
+			mv.addObject("user",userDTO.getUserId());
+			//httpSession.setAttribute("user", login);
+			mv.setViewName("home");
+			return mv;
 		}
 	}
 	@RequestMapping(value="logout")

@@ -23,7 +23,7 @@
             <a class="nav-link" href="contact">Contact</a>
           </li>
           <li class="nav-item">
-          	Id : ${user.userId }
+          	Id : ${user }
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -47,7 +47,7 @@
 				<c:if test="${user !=null }">
            	  <a class="dropdown-item" href="logout">Logout</a>
            	 </c:if>
-              <a class="dropdown-item" href="admin">admin</a>
+              <a class="dropdown-item" href="border">border</a>
             </div>
           </li>
 			

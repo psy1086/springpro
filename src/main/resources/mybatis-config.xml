@@ -5,6 +5,7 @@
 
     <typeAliases>
         <typeAlias type="com.company.user.dto.UserDTO" alias="userDTO"/>
+        <typeAlias type="com.company.border.dto.BorderDTO" alias="borderDTO" />
     </typeAliases>
     
 </configuration>
