@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.company.mapper.borderMapper">
+	
+	<select id="borderList" resultType="borderDTO">
+		SELECT userId, borderTitle, borderLike, borderDate FROM border;
+	</select>
+	
+	<select id="borderView" resultType="borderDTO">
+		SELECT borderTitle, borderContent, userId, borderLike FROM border WHERE borderId = #{borderId};
+	</select>
+	
+	<insert id="borderWrite" parameterType="borderDTO">
+		INSERT INTO border (userId, borderTitle, borderContent, borderDate, borderLike) VALUES (
+			#{userId},
+			#{borderTitle},
+			#{borderContent},
+			now(),
+			0
+		)
+	</insert>
+	
+	<update id="borderUpdate" parameterType="borderDTO">
+		UPDATE border SET
+			borderTitle = #{borderTitle},
+			borderContent = #{borderContent},
+			borderDate = now()
+		WHERE
+			borderId = #{borderId}
+	</update>
+	
+	<delete id="borderDelete" parameterType="int">
+		DELETE FROM border WHERE borderId = #{borderId}
+	</delete>
+	
+	<update id="borderLike" parameterType="borderDTO">
+		UPDATE border SET borderLike = borderLike+1 WHERE borderId = #{borderId}
+	</update>
+	
+</mapper>
