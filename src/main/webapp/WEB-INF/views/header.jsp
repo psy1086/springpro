@@ -4,6 +4,7 @@
   <!-- Custom styles for this template -->
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/modern-business.css" rel="stylesheet">
 
+
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
       <a class="navbar-brand" href="home">Start Bootstrap</a>
@@ -22,7 +23,7 @@
             <a class="nav-link" href="contact">Contact</a>
           </li>
           <li class="nav-item">
-          	<a class="nav-link" href="dbtest">test</a>
+          	Id : ${user.userId }
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -39,9 +40,13 @@
               Other Pages
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-              <a class="dropdown-item" href="register">Register</a>
-              <a class="dropdown-item" href="login">Login</a>
+				<c:if test="${user == null}">
+					<a class="dropdown-item" href="register">Register</a>
+					<a class="dropdown-item" href="login">Login</a>
+				</c:if>
+				<c:if test="${user !=null }">
            	  <a class="dropdown-item" href="logout">Logout</a>
+           	 </c:if>
               <a class="dropdown-item" href="admin">admin</a>
             </div>
           </li>

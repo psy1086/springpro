@@ -15,27 +15,27 @@
           <div class="row">
             <div class="col-md-9 col-lg-8 mx-auto">
               <h3 class="login-heading mb-4">Welcome back!</h3>
-              <form:form method="post" action="userRegisterAction">
+              <form:form commandName="userDTO" action="userRegister">
               	<div class="form-label-group">
-                  <form:input path="userId" name="userId" id="inputId" class="form-control" placeholder="Id" required autofocus />
-                  <label for="inputEmail">Id</label>
+                  <form:input path="userId" name="userId" id="inputId" class="form-control" placeholder="Id" />
+                  <label for="inputId">Id</label>
                 </div>
                 
                 <div class="form-label-group">
-                  <form:password path="userPassword" name="userPassword" id="inputPassword" class="form-control" placeholder="Password" required />
+                  <form:password path="userPassword" name="userPassword" id="inputPassword" class="form-control" placeholder="Password" />
                   <label for="inputPassword">Password</label>
                 </div>
                 
                 <div class="form-label-group">
-                  <form:input path="userName" name="userName" id="inputName" class="form-control" placeholder="Name" required />
+                  <form:input path="userName" name="userName" id="inputName" class="form-control" placeholder="Name" />
                   <label for="inputName">Name</label>
                 </div>
               
                 <div class="form-label-group">
-                  <form:input path="userEmail" type="email" name="userEmail" id="inputEmail" class="form-control" placeholder="Email address" required />
+                  <form:input path="userEmail" type="email" name="userEmail" id="inputEmail" class="form-control" placeholder="Email address" />
                   <label for="inputEmail">Email address</label>
                 </div>
-                <form:button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" id="submit">Sign in</form:button>
+                	<input class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit" value="Sign in">
               </form:form>
             </div>
           </div>

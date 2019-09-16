@@ -32,5 +32,13 @@ public class UserDAOImpl implements UserDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.insert(Namespace+".userRegister", userDTO);
 	}
-
+	
+//	@Override
+//	public int userLogin(String userId) throws Exception {
+//		return sqlSession.selectOne(Namespace+".userLogin", userId);
+//	}
+	@Override
+	public UserDTO userLogin(UserDTO userDTO) throws Exception {
+		return sqlSession.selectOne(Namespace+".userLogin", userDTO);
+	}
 }

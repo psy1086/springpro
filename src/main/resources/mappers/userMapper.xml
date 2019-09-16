@@ -8,11 +8,15 @@
 	</select>
 	
 	<insert id="userRegister" parameterType="userDTO">
-		INSERT INTO test (userId, userPassword, userName, userEmail) VALUES (
+		INSERT INTO user (userId, userPassword, userName, userEmail) VALUES (
 			#{userId},
 			#{userPassword},
 			#{userName},
 			#{userEmail}
 		)
 	</insert>
+	
+	<select id="userLogin" resultType="userDTO">
+		SELECT userId, userPassword FROM user WHERE userId = #{userId} AND userPassword = #{userPassword}
+	</select>
 </mapper>

@@ -1,3 +1,4 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -14,21 +15,22 @@
           <div class="row">
             <div class="col-md-9 col-lg-8 mx-auto">
               <h3 class="login-heading mb-4">Welcome back!</h3>
-              <form method="post" action="userLoginAction.jsp">
-                <div class="form-label-group">
-                  <input type="text" name="userId" id="inputId" class="form-control" placeholder="Id" required autofocus>
-                  <label for="inputId">Id</label>
-                </div>
+              <form:form commandName="userDTO" action="userLogin">
+              	<div class="form-label-group">
+              		<form:input path="userId" name="userId" id="inputId" class="form-control" placeholder="Id"/>
+              		<label for="inputId">Id</label>
+              	</div>
+              	
+              	<div class="form-label-group">
+              		<form:password path="userPassword" name="userPassword" id="inputPassword" class="form-control" placeholder="Password" />
+              		<label for="inputPassword">Password</label>
+              	</div>
+              	
+              	<input type="submit" class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" value="Login">
+              	<div class="text-center">
+              	<a class="small" href="register">Register</a></div>
+              </form:form>
 
-                <div class="form-label-group">
-                  <input type="password" name="userPassword" id="inputPassword" class="form-control" placeholder="Password" required>
-                  <label for="inputPassword">Password</label>
-                </div>
-                
-                <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">Login</button>
-                <div class="text-center">
-                  <a class="small" href="userRegister.jsp">Register</a></div>
-              </form>
             </div>
           </div>
         </div>
