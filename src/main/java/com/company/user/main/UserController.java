@@ -34,7 +34,7 @@ public class UserController {
 		
 	}
 
-	@RequestMapping(value="userLoginPost", method=RequestMethod.POST)
+	@RequestMapping(value="otherPage/userLoginPost", method=RequestMethod.POST)
 	public void userLogin(LoginDTO loginDTO, HttpSession httpSession, Model model) throws Exception {
 		logger.info("userController userLogin");
 		UserDTO userDTO = userService.userLogin(loginDTO);

@@ -69,7 +69,7 @@ public class HomeController {
 	@RequestMapping(value="login")
 	public String login(@ModelAttribute("userDTO")UserDTO userDTO) {
 		logger.info("Login Called");
-		return "userLogin";
+		return "otherPage/userLogin";
 	}
 
 	
