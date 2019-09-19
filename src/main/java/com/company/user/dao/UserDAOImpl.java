@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
+import com.company.user.dto.LoginDTO;
 import com.company.user.dto.UserDTO;
 
 @Repository
@@ -33,12 +34,13 @@ public class UserDAOImpl implements UserDAO {
 		return sqlSession.insert(Namespace+".userRegister", userDTO);
 	}
 	
-//	@Override
-//	public int userLogin(String userId) throws Exception {
-//		return sqlSession.selectOne(Namespace+".userLogin", userId);
-//	}
 	@Override
-	public UserDTO userLogin(UserDTO userDTO) throws Exception {
-		return sqlSession.selectOne(Namespace+".userLogin", userDTO);
+	public UserDTO userLogin(LoginDTO loginDTO) throws Exception {
+		return sqlSession.selectOne(Namespace+".userLogin", loginDTO);
 	}
+	
+//	@Override
+//	public UserDTO userLogin(UserDTO userDTO) throws Exception {
+//		return sqlSession.selectOne(Namespace+".userLogin", userDTO);
+//	}
 }

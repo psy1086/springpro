@@ -4,7 +4,7 @@
 <mapper namespace="com.company.mapper.borderMapper">
 	
 	<select id="borderList" resultType="borderDTO">
-		SELECT userId, borderTitle, borderLike, borderDate FROM border;
+		SELECT borderId, userId, borderTitle, borderLike, borderDate FROM border;
 	</select>
 	
 	<select id="borderView" resultType="borderDTO">

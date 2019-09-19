@@ -34,8 +34,12 @@
         </p>
         <p>
           <abbr title="Email">E</abbr>:
-          <a href="mailto:name@example.com">name@example.com
+          <a href="mailto:andrea122245@gmail.com">andrea122245@gmail.com
           </a>
+        </p>
+        <p>
+        	<abbr title="Hompage">H</abbr>:
+        	<a href="mailto:psy1086@github.com">psy1086@github.com</a>
         </p>
         <p>
           <abbr title="Hours">H</abbr>: Monday - Friday: 9:00 AM to 5:00 PM

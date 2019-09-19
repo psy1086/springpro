@@ -41,5 +41,13 @@
 		<beans:property name="order" value="2" />
 	</beans:bean>
 	
+	<beans:bean id="loginInterceptor" class="com.company.user.interceptor.LoginIntercepter" />
+		<interceptors>
+			<interceptor>
+				<mapping path="/userLoginPost"/>
+				<beans:ref bean="loginInterceptor" />				
+			</interceptor>
+		</interceptors>
+
 	
 </beans:beans>

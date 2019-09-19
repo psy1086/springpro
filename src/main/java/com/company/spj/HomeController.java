@@ -8,8 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.company.user.dto.LoginDTO;
 import com.company.user.dto.UserDTO;
 import com.company.user.service.UserService;
 
@@ -69,9 +69,8 @@ public class HomeController {
 	@RequestMapping(value="login")
 	public String login(@ModelAttribute("userDTO")UserDTO userDTO) {
 		logger.info("Login Called");
-		return "otherPage/userLogin";
+		return "userLogin";
 	}
-	
-	
+
 	
 }

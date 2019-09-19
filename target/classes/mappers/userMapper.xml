@@ -17,6 +17,6 @@
 	</insert>
 	
 	<select id="userLogin" resultType="userDTO">
-		SELECT userId, userPassword FROM user WHERE userId = #{userId} AND userPassword = #{userPassword}
+		SELECT * FROM user WHERE userId = #{userId}
 	</select>
 </mapper>

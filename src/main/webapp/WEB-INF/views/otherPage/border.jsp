@@ -11,7 +11,7 @@
 	<header class="jumbotron my-4">
 	</header>
 	<h2>Border</h2>
-	${user.userId }
+	${userId}
 	<table class="table talbe-hover">
 		<thead>
 			<tr>

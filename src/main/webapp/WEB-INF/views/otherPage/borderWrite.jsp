@@ -22,6 +22,9 @@
 						<div class="form-label-group">
 							<form:textarea path="borderContent" id="inputBorderContent" placeholder="Content" rows="20" class="boder-control"/>
 						</div>	
+						<div class="form-label-group">
+							<form:hidden path="userId" value="${userId}" class="border-control" />
+						</div>
 						<input class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit" value="Write">
 					</form:form>
 				</div>

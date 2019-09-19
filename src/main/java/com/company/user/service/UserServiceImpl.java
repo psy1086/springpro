@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.company.user.dao.UserDAO;
+import com.company.user.dto.LoginDTO;
 import com.company.user.dto.UserDTO;
 
 @Service
@@ -26,13 +27,15 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		return userDAO.userRegister(userDTO);
 	}
-//	@Override
-//	public int userLogin(String userId) throws Exception {
-//		return userDAO.userLogin(userId);
-//	}
+
 	@Override
-	public UserDTO userLogin(UserDTO userDTO) throws Exception {
-		return userDAO.userLogin(userDTO);
+	public UserDTO userLogin(LoginDTO loginDTO) throws Exception {
+		return userDAO.userLogin(loginDTO);
 	}
+	
+//	@Override
+//	public UserDTO userLogin(UserDTO userDTO) throws Exception {
+//		return userDAO.userLogin(userDTO);
+//	}
 
 }

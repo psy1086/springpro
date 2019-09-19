@@ -35,7 +35,7 @@ public class BorderController {
 	public String borderWriteAction(BorderDTO borderDTO) throws Exception {
 		logger.info("borderWrite Action");
 		borderService.borderWrite(borderDTO);
-		return "otherPage/border";
+		return "redirect:border";
 	}
 	
 }

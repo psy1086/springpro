@@ -1,6 +1,6 @@
 package com.company.border.dto;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class BorderDTO {
 	private int borderId;

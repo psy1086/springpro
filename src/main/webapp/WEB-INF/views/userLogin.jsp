@@ -15,7 +15,7 @@
           <div class="row">
             <div class="col-md-9 col-lg-8 mx-auto">
               <h3 class="login-heading mb-4">Welcome back!</h3>
-              <form:form commandName="userDTO" action="userLogin">
+              <form:form commandName="userDTO" action="userLoginPost">
               	<div class="form-label-group">
               		<form:input path="userId" name="userId" id="inputId" class="form-control" placeholder="Id"/>
               		<label for="inputId">Id</label>

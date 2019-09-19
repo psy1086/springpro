@@ -22,9 +22,6 @@
           <li class="nav-item">
             <a class="nav-link" href="contact">Contact</a>
           </li>
-          <li class="nav-item">
-          	Id : ${user }
-          </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Menu
@@ -39,16 +36,18 @@
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Other Pages
             </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-				<c:if test="${user == null}">
-					<a class="dropdown-item" href="register">Register</a>
-					<a class="dropdown-item" href="login">Login</a>
-				</c:if>
-				<c:if test="${user !=null }">
-           	  <a class="dropdown-item" href="logout">Logout</a>
-           	 </c:if>
-              <a class="dropdown-item" href="border">border</a>
-            </div>
+				            
+	            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+					<c:if test="${empty login}">
+						<a class="dropdown-item" href="register">Register</a>
+						<a class="dropdown-item" href="login">Login</a>
+					</c:if>
+					<c:if test="${not empty login }">		
+	           	  		<a class="dropdown-item" href="logout">Logout</a>
+	           	 	</c:if>
+	              <a class="dropdown-item" href="border">border</a>
+	            </div>
+	            
           </li>
 			
 
