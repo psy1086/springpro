@@ -11,7 +11,7 @@
 	<header class="jumbotron my-4">
 	</header>
 	<h2>Border</h2>
-	${userId}
+	${login.userId}
 	<table class="table talbe-hover">
 		<thead>
 			<tr>
@@ -31,12 +31,12 @@
 				</c:when>
 				<c:when test="${!empty borderList }">
 					<c:forEach var="list" items="${borderList }">
-						<tr>
-							<td><c:out value="${list.borderId }" /></td>
-							<td><c:out value="${list.borderTitle }" /></td>
-							<td><c:out value="${list.userId }" /></td>
-							<td><c:out value="${list.borderDate }"/></td>
-							<td><c:out value="${list.borderLike }"/></td>
+						<tr style = "cursor:pointer;" onclick="location.href='borderView?borderId=${list.borderId}'">					
+								<td><c:out value="${list.borderId }" /></td>
+								<td><c:out value="${list.borderTitle }" /></td>
+								<td><c:out value="${list.userId }" /></td>
+								<td><c:out value="${list.borderDate }"/></td>
+								<td><c:out value="${list.borderLike }"/></td>
 						</tr>
 					</c:forEach>
 				</c:when>

@@ -8,7 +8,7 @@
 	</select>
 	
 	<select id="borderView" resultType="borderDTO">
-		SELECT borderTitle, borderContent, userId, borderLike FROM border WHERE borderId = #{borderId};
+		SELECT borderId, userId, borderTitle, borderContent, borderLike FROM border WHERE borderId = #{borderId};
 	</select>
 	
 	<insert id="borderWrite" parameterType="borderDTO">

@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.company.border.dto.BorderDTO;
-
+import com.company.user.dto.UserDTO;
 @Repository
 public class BorderDAOImpl implements BorderDAO {
 
@@ -30,6 +30,7 @@ public class BorderDAOImpl implements BorderDAO {
 	@Override
 	public int borderWrite(BorderDTO borderDTO) throws Exception {
 		// TODO Auto-generated method stub
+		
 		return sqlSession.insert(Namespace+".borderWrite", borderDTO);
 	}
 
