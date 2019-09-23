@@ -15,7 +15,7 @@
 			<div class="row no-gutter">
 				<div class="col-md-8 col-lg-6">
 					<h3 class="login-heading mb-4">View</h3>
-					<form:form commandName="borderDTO" action="borderWriteAction">
+					<form:form commandName="borderDTO" action="borderUpdate">
 						<div class="form-label-group">
 							<form:input path="borderTitle" id="inputBorderTitle" placeholder="Title" class="boder-control" value="${list.borderTitle }" readonly="true"/>
 							
@@ -25,6 +25,7 @@
 						</div>	
 						<input type="button" class="btn btn-lg btn-danger btn-block text-uppercase font-weight-bold mb-2" value="Back" onClick="history.back(-1)">
 						 <c:if test="${borderDTO.userId eq login.userId}">
+						 	<input class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit" value="Update">
 							<a class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" href="borderUpdate?borderId=${borderDTO.borderId }">Update</a>
 						</c:if>
 					</form:form>

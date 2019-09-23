@@ -14,7 +14,7 @@
 		<div class="container-fluid">
 			<div class="row no-gutter">
 				<div class="col-md-8 col-lg-6">
-					<h3 class="login-heading mb-4">View</h3>
+					<h3 class="login-heading mb-4">Update</h3>
 					<form:form commandName="borderDTO" action="borderUpdateAction">
 						<div class="form-label-group">
 							<form:input path="borderTitle" id="inputBorderTitle" placeholder="Title" class="boder-control" value="${list.borderTitle }"/>

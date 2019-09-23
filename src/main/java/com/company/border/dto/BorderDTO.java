@@ -47,5 +47,12 @@ public class BorderDTO {
 		this.borderLike = borderLike;
 	}
 	
+	@Override
+	public String toString() {
+		return "BorderDTO [borderId=" + borderId + ", userId=" + userId + ", borderTitle=" + borderTitle
+				+ ", borderContent=" + borderContent + ", borderDate=" + borderDate + ", borderLike=" + borderLike
+				+ "]";
+	}
+	
 	
 }
