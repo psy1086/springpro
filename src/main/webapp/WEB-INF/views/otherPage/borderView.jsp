@@ -23,10 +23,10 @@
 						<div class="form-label-group">
 							<form:textarea path="borderContent" id="inputBorderContent" rows="20" class="boder-control" value="${list.borderContent }" readonly="true"/>
 						</div>	
-						<input type="button" class="btn btn-lg btn-danger btn-block text-uppercase font-weight-bold mb-2" value="Back" onClick="history.back(-1)">
+						<input type="button" class="btn btn-lg btn-success btn-block text-uppercase font-weight-bold mb-2" value="Back" onClick="history.back(-1)">
 						 <c:if test="${borderDTO.userId eq login.userId}">
-						 	<input class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit" value="Update">
 							<a class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" href="borderUpdate?borderId=${borderDTO.borderId }">Update</a>
+							<a class="btn btn-lg btn-danger btn-block text-uppercase font-weight-bold mb-2" href="borderDelete?borderId=${borderDTO.borderId }" >Delete</a>
 						</c:if>
 					</form:form>
 				</div>

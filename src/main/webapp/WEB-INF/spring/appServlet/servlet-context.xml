@@ -42,12 +42,13 @@
 	</beans:bean>
 	
 	<beans:bean id="loginInterceptor" class="com.company.user.interceptor.LoginIntercepter" />
-		<interceptors>
-			<interceptor>
-				<mapping path="/otherPage/userLoginPost"/>
-				<beans:ref bean="loginInterceptor" />				
-			</interceptor>
-		</interceptors>
-	
+
+	<interceptors>
+		<interceptor>
+			<mapping path="/otherPage/userLoginPost"/>
+			<mapping path="/otherPage/borderPost" />
+			<beans:ref bean="loginInterceptor" />				
+		</interceptor>
+	</interceptors>
 	
 </beans:beans>

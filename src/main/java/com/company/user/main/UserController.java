@@ -1,6 +1,7 @@
 package com.company.user.main;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.mindrot.jbcrypt.BCrypt;
@@ -35,7 +36,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value="otherPage/userLoginPost", method=RequestMethod.POST)
-	public void userLogin(LoginDTO loginDTO, HttpSession httpSession, Model model) throws Exception {
+	public void userLogin(LoginDTO loginDTO, HttpSession httpSession, Model model, HttpServletRequest request) throws Exception {
 		logger.info("userController userLogin");
 		UserDTO userDTO = userService.userLogin(loginDTO);
 		

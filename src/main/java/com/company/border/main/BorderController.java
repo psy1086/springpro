@@ -27,6 +27,7 @@ public class BorderController {
 	public String border(Model model) throws Exception {
 		logger.info("border Called");
 		model.addAttribute("borderList",borderService.borderList());
+		
 		return "otherPage/border";
 	}
 	
@@ -47,9 +48,9 @@ public class BorderController {
 		return "redirect:border";
 	}
 	@RequestMapping(value="borderView", method=RequestMethod.GET)
-	public String borderView(@ModelAttribute("borderId") int borderId,Model model) throws Exception {
+	public String borderView(@ModelAttribute("borderId") int borderId,BorderDTO borderDTO,Model model) throws Exception {
 		logger.info("borderView"+borderId);
-		BorderDTO borderDTO = borderService.borderView(borderId);
+		borderDTO = borderService.borderView(borderId);
 		model.addAttribute(borderDTO);
 		return "otherPage/borderView";
 	}
@@ -69,6 +70,13 @@ public class BorderController {
 		int borderId = bo.getBorderId();
 		borderDTO.setBorderId(borderId);
 		borderService.borderUpdate(borderDTO);
+		return "redirect:border";
+	}
+	
+	@RequestMapping(value="borderDelete")
+	public String borderDelete(@ModelAttribute("borderId")int borderId) throws Exception {
+		logger.info(borderId + "borderDelete");
+		borderService.borderDelete(borderId);
 		return "redirect:border";
 	}
 }
