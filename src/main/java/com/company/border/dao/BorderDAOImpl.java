@@ -14,8 +14,6 @@ import com.company.border.main.Criteria;
 @Repository
 public class BorderDAOImpl implements BorderDAO {
 
-	private static final Logger logger = LoggerFactory.getLogger(BorderDAOImpl.class);
-	
 	@Inject
 	private SqlSession sqlSession;
 	

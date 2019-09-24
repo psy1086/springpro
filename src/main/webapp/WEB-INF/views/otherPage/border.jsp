@@ -56,5 +56,7 @@
 			<li><a class="page-link" href="border?page${pagination.endPage+1 }">Next</a></li> 
 		</c:if>
 	</ul>
-	<a href="borderWrite"><button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2">Write</button></a>
+	<c:if test="${not empty login }">
+		<a href="borderWrite"><button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2">Write</button></a>
+	</c:if>
 </div>

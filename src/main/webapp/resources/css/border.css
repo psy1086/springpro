@@ -55,7 +55,10 @@ h5{ font-size : 18px;}
   border-radius: .25rem;
   transition: all .1s ease-in-out;
 }
-
+.div-group {
+	float: left;
+	width:50%;
+}
 
 /* Fallback for Edge
 -------------------------------------------------- */

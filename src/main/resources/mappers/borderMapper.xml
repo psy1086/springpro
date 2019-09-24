@@ -38,7 +38,7 @@
 		UPDATE border SET borderLike = borderLike+1 WHERE borderId = #{borderId}
 	</update>
 	
-	<select id="borderNct" resultType="int">
+	<select id="borderCnt" resultType="int">
 		SELECT COUNT(borderId) FROM border WHERE borderId > 0
 	</select>
 	

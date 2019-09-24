@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -84,5 +85,13 @@ public class BorderController {
 		logger.info(borderId + "borderDelete");
 		borderService.borderDelete(borderId);
 		return "redirect:border";
+	}
+	
+	@Transactional
+	@RequestMapping(value="borderLike")
+	public String borderLike(@ModelAttribute("borderId")int borderId) throws Exception {
+		logger.info(borderId + "borderLike");
+		borderService.borderLike(borderId);
+		return "redirect:borderView";
 	}
 }

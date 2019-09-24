@@ -1,12 +1,12 @@
 package com.company.border.main;
 
 public class Criteria {
-	private int page;			//ÇöÀç ÆäÀÌÁö ¹øÈ£
-	private int perPageNum;		//ÆäÀÌÁö´ç Ãâ·Â °Ô½Ã±Û °¹¼ö
+	private int page;			//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£
+	private int perPageNum;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ô½Ã±ï¿½ ï¿½ï¿½ï¿½ï¿½
 	
 	public Criteria() {
 		this.page =1;
-		this.perPageNum = 10;
+		this.perPageNum = 5;
 	}
 	
 	public void setPage(int page) {
@@ -23,7 +23,7 @@ public class Criteria {
 	
 	public void setPerPageNum(int perPageNum) {
 		if(perPageNum <= 0 || perPageNum > 100) {
-			this.perPageNum = 10;
+			this.perPageNum = 5;
 			return;
 		}
 		this.perPageNum = perPageNum;

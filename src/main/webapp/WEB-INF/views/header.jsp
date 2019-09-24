@@ -55,7 +55,7 @@
 						<a href="#" class="nav-link">${login.userName }</a>	
 					</c:if>
 					<c:if test="${empty login }">
-						<li class="nav-link">#</li>
+						<li class="nav-link">Guest</li>
 					</c:if>	
 				</li>
 			</ul>

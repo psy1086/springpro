@@ -23,11 +23,16 @@
 						<div class="form-label-group">
 							<form:textarea path="borderContent" id="inputBorderContent" rows="20" class="boder-control" value="${list.borderContent }" readonly="true"/>
 						</div>	
-						<input type="button" class="btn btn-lg btn-success btn-block text-uppercase font-weight-bold mb-2" value="Back" onClick="history.back(-1)">
-						 <c:if test="${borderDTO.userId eq login.userId}">
-							<a class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" href="borderUpdate?borderId=${borderDTO.borderId }">Update</a>
-							<a class="btn btn-lg btn-danger btn-block text-uppercase font-weight-bold mb-2" href="borderDelete?borderId=${borderDTO.borderId }" >Delete</a>
-						</c:if>
+						<div class="div-group">
+							<input type="button" class="btn btn-lg btn-success btn-block text-uppercase font-weight-bold mb-2" value="Back" onClick="history.back(-1)">
+							<a class="btn btn-lg btn-warning btn-block text-uppercase font-weight-bold mb-2" href="borderLike?borderId=${borderDTO.borderId }">Like</a>	
+						</div>	
+						<div class="div-group">
+							 <c:if test="${borderDTO.userId eq login.userId}">
+								<a class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" href="borderUpdate?borderId=${borderDTO.borderId }">Update</a>
+								<a class="btn btn-lg btn-danger btn-block text-uppercase font-weight-bold mb-2" href="borderDelete?borderId=${borderDTO.borderId }" >Delete</a>
+							</c:if>
+						</div>
 					</form:form>
 				</div>
 			</div>
