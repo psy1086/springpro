@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.company.border.dao.BorderDAO;
 import com.company.border.dto.BorderDTO;
+import com.company.border.main.Criteria;
 
 @Service
 public class BorderServiceImpl implements BorderService {
@@ -16,9 +17,9 @@ public class BorderServiceImpl implements BorderService {
 	private BorderDAO borderDAO;
 	
 	@Override
-	public List<BorderDTO> borderList() throws Exception {
+	public List<BorderDTO> borderList(Criteria criteria) throws Exception {
 		// TODO Auto-generated method stub
-		return borderDAO.borderList();
+		return borderDAO.borderList(criteria);
 	}
 
 	@Override
@@ -49,6 +50,11 @@ public class BorderServiceImpl implements BorderService {
 	public BorderDTO borderView(int borderId) throws Exception {
 		// TODO Auto-generated method stub
 		return borderDAO.borderView(borderId);
+	}
+	
+	@Override
+	public int borderCnt(Criteria criteria) throws Exception {
+		return borderDAO.borderCnt(criteria);
 	}
 
 }

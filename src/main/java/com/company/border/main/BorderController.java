@@ -10,9 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.company.border.dto.BorderDTO;
+import com.company.border.dto.Pagination;
 import com.company.border.service.BorderService;
 import com.company.user.dto.UserDTO;
 
@@ -24,9 +24,15 @@ public class BorderController {
 	private BorderService borderService;
 	
 	@RequestMapping(value="border")
-	public String border(Model model) throws Exception {
+	public String border(Model model, Criteria criteria) throws Exception {
 		logger.info("border Called");
-		model.addAttribute("borderList",borderService.borderList());
+		Pagination pagination = new Pagination();
+		pagination.setCriteria(criteria);
+		pagination.setTotalCnt(borderService.borderCnt(criteria));
+		
+		model.addAttribute("borderList",borderService.borderList(criteria));
+		model.addAttribute("pagination", pagination);
+		
 		
 		return "otherPage/border";
 	}

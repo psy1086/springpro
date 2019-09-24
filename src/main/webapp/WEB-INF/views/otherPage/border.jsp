@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
   <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -43,7 +43,18 @@
 			</c:choose>
 		</tbody>
 	</table>
-		<a class="page-link" href="#">Aff</a> 
-		<a class="page-link" href="#">Next</a> 
+	<ul class="pagination">
+		<c:if test="${pagination.prev }">
+			<li><a class="page-link" href="border?page=${pagination.startPage-1 }">Prev</a></li>
+		</c:if> 
+		<c:forEach begin="${pagination.startPage}" end="${pagination.endPage }" var="idx">
+			<li <c:out value="${pagination.criteria.page == idx ? 'class=active' : '' }" />>
+				<a href="border?page=${idx }">${idx }</a>
+			</li>
+		</c:forEach>
+		<c:if test="${pagination.next && pagination.endPage > 0 }">
+			<li><a class="page-link" href="border?page${pagination.endPage+1 }">Next</a></li> 
+		</c:if>
+	</ul>
 	<a href="borderWrite"><button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2">Write</button></a>
 </div>

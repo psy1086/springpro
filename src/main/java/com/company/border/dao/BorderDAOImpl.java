@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.company.border.dto.BorderDTO;
-import com.company.user.dto.UserDTO;
+import com.company.border.main.Criteria;
 @Repository
 public class BorderDAOImpl implements BorderDAO {
 
@@ -22,9 +22,9 @@ public class BorderDAOImpl implements BorderDAO {
 	private static final String Namespace = "com.company.mapper.borderMapper";
 	
 	@Override
-	public List<BorderDTO> borderList() throws Exception {
+	public List<BorderDTO> borderList(Criteria criteria) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList(Namespace+".borderList");
+		return sqlSession.selectList(Namespace+".borderList", criteria);
 	}
 
 	@Override
@@ -57,5 +57,10 @@ public class BorderDAOImpl implements BorderDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(Namespace+".borderView", borderId);
 	}
-
+	
+	@Override
+	public int borderCnt(Criteria criteria) throws Exception {
+		return sqlSession.selectOne(Namespace+".borderCnt", criteria);
+	}
+	
 }

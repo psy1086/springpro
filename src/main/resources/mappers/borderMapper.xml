@@ -4,11 +4,11 @@
 <mapper namespace="com.company.mapper.borderMapper">
 	
 	<select id="borderList" resultType="borderDTO">
-		SELECT borderId, userId, borderTitle, borderLike, borderDate FROM border;
+		SELECT borderId, userId, borderTitle, borderLike, borderDate FROM border ORDER BY borderId DESC LIMIT #{pageStart}, #{perPageNum}
 	</select>
 	
 	<select id="borderView" resultType="borderDTO">
-		SELECT borderId, userId, borderTitle, borderContent, borderLike FROM border WHERE borderId = #{borderId};
+		SELECT borderId, userId, borderTitle, borderContent, borderLike FROM border WHERE borderId = #{borderId}
 	</select>
 	
 	<insert id="borderWrite" parameterType="borderDTO">
@@ -37,5 +37,9 @@
 	<update id="borderLike" parameterType="borderDTO">
 		UPDATE border SET borderLike = borderLike+1 WHERE borderId = #{borderId}
 	</update>
+	
+	<select id="borderNct" resultType="int">
+		SELECT COUNT(borderId) FROM border WHERE borderId > 0
+	</select>
 	
 </mapper>
