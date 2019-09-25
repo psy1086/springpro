@@ -6,11 +6,11 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.company.border.dto.BorderDTO;
 import com.company.border.dto.Pagination;
@@ -30,7 +30,7 @@ public class BorderController {
 		Pagination pagination = new Pagination();
 		pagination.setCriteria(criteria);
 		pagination.setTotalCnt(borderService.borderCnt(criteria));
-		
+
 		model.addAttribute("borderList",borderService.borderList(criteria));
 		model.addAttribute("pagination", pagination);
 		
@@ -41,6 +41,7 @@ public class BorderController {
 	@RequestMapping(value="borderWrite")
 	public String borderWrite(@ModelAttribute("borderDTO")BorderDTO borderDTO) throws Exception {
 		logger.info("borderWrite Called");
+		
 		return "otherPage/borderWrite";
 	}
 	@RequestMapping(value="borderWriteAction")
@@ -55,10 +56,12 @@ public class BorderController {
 		return "redirect:border";
 	}
 	@RequestMapping(value="borderView", method=RequestMethod.GET)
-	public String borderView(@ModelAttribute("borderId") int borderId,BorderDTO borderDTO,Model model) throws Exception {
+	public String borderView(@ModelAttribute("borderId") int borderId,@ModelAttribute("criteria")Criteria criteria,BorderDTO borderDTO,Model model) throws Exception {
 		logger.info("borderView"+borderId);
 		borderDTO = borderService.borderView(borderId);
+		borderService.borderViewCnt(borderId);
 		model.addAttribute(borderDTO);
+		model.addAttribute(criteria);
 		return "otherPage/borderView";
 	}
 	@RequestMapping(value="borderUpdate")
@@ -86,12 +89,13 @@ public class BorderController {
 		borderService.borderDelete(borderId);
 		return "redirect:border";
 	}
+
+//	@RequestMapping(value="borderLike")
+//	public String borderLike(@ModelAttribute("borderId")int borderId,@ModelAttribute("page")int page) throws Exception {
+//		logger.info(borderId + "borderLike");
+//		borderService.borderLike(borderId);
+//		return "redirect:borderView";
+//	}
+
 	
-	@Transactional
-	@RequestMapping(value="borderLike")
-	public String borderLike(@ModelAttribute("borderId")int borderId) throws Exception {
-		logger.info(borderId + "borderLike");
-		borderService.borderLike(borderId);
-		return "redirect:borderView";
-	}
 }

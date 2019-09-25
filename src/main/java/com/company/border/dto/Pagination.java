@@ -1,5 +1,8 @@
 package com.company.border.dto;
 
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
+
 import com.company.border.main.Criteria;
 
 public class Pagination {
@@ -33,6 +36,16 @@ public class Pagination {
 		prev = startPage == 1 ? false : true ;
 		next = endPage * criteria.getPerPageNum() >= totalCnt ? false : true;
 	}
+	
+	public String makeQuery(int page) {
+		UriComponents uriComponents = UriComponentsBuilder.newInstance()
+				.queryParam("page", page)
+				.queryParam("perPageNum", criteria.getPerPageNum())
+				.build();
+		
+		return uriComponents.toUriString();
+	}
+	
 	public int getStartPage() {
 		return startPage;
 	}

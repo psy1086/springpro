@@ -61,4 +61,16 @@ public class BorderDAOImpl implements BorderDAO {
 		return sqlSession.selectOne(Namespace+".borderCnt", criteria);
 	}
 	
+	@Override
+	public void borderViewCnt(int borderId) throws Exception{
+		sqlSession.update(Namespace+".borderViewCnt", borderId);
+	}
+	
+	
+	
+	@Override
+	public void borderLikeCnt(int borderId) throws Exception {
+		sqlSession.selectOne(Namespace+".borderLikeCnt", borderId);
+	}
+
 }

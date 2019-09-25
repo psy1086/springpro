@@ -4,19 +4,20 @@
 <mapper namespace="com.company.mapper.borderMapper">
 	
 	<select id="borderList" resultType="borderDTO">
-		SELECT borderId, userId, borderTitle, borderLike, borderDate FROM border ORDER BY borderId DESC LIMIT #{pageStart}, #{perPageNum}
+		SELECT borderId, userId, borderTitle, borderLike, borderDate, borderView FROM border ORDER BY borderId DESC LIMIT #{pageStart}, #{perPageNum}
 	</select>
 	
 	<select id="borderView" resultType="borderDTO">
-		SELECT borderId, userId, borderTitle, borderContent, borderLike FROM border WHERE borderId = #{borderId}
+		SELECT borderId, userId, borderTitle, borderContent, borderLike, borderView FROM border WHERE borderId = #{borderId}
 	</select>
 	
 	<insert id="borderWrite" parameterType="borderDTO">
-		INSERT INTO border (userId, borderTitle, borderContent, borderDate, borderLike) VALUES (
+		INSERT INTO border (userId, borderTitle, borderContent, borderDate, borderLike, borderView) VALUES (
 			#{userId},
 			#{borderTitle},
 			#{borderContent},
 			now(),
+			0,
 			0
 		)
 	</insert>
@@ -34,12 +35,38 @@
 		DELETE FROM border WHERE borderId = #{borderId}
 	</delete>
 	
-	<update id="borderLike" parameterType="borderDTO">
+	<!-- <update id="borderLike" parameterType="borderDTO">
 		UPDATE border SET borderLike = borderLike+1 WHERE borderId = #{borderId}
+	</update> -->
+	<!-- 
+	<update id="borderLike" parameterType="HashMap">
+		UPDATE likey SET likeId = likeId + 1 WHERE borderId=#{borderId} AND userId=#{userId}
 	</update>
+	<update id="borderLikeCancle" parameterType="HashMap">
+		UPDATE likey SET likeId = 0 WHERE borderId=#{borderId} AND userId=#{userId}
+	</update> -->
+	
+	<update id="borderViewCnt">
+		UPDATE border SET borderView = borderView + 1 WHERE borderId = #{borderId}
+	</update>
+	
+	<insert id="borderLikeCreate">
+		INSERT INTO likey (likeId, borderId, userId, likeCheck) VALUES(
+			0,
+			borderId = #{borderId},
+			userId = #{userId},
+			0
+		)
+	</insert>
+	
+	<select id="borderLikeCnt">
+		SELECT likeId FROM likey WHERE = borderId = #{borderId};
+	</select>
 	
 	<select id="borderCnt" resultType="int">
 		SELECT COUNT(borderId) FROM border WHERE borderId > 0
 	</select>
+	
+	
 	
 </mapper>

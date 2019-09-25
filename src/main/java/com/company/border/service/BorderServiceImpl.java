@@ -5,6 +5,8 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.company.border.dao.BorderDAO;
 import com.company.border.dto.BorderDTO;
@@ -56,5 +58,12 @@ public class BorderServiceImpl implements BorderService {
 	public int borderCnt(Criteria criteria) throws Exception {
 		return borderDAO.borderCnt(criteria);
 	}
-
+	
+	@Transactional(isolation = Isolation.READ_COMMITTED)
+	@Override
+	public BorderDTO borderViewCnt(int borderId) throws Exception {
+		borderDAO.borderViewCnt(borderId);
+		return borderDAO.borderView(borderId);
+	}
+	
 }

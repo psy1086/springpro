@@ -9,6 +9,7 @@ public class BorderDTO {
 	private String borderContent;
 	private Date borderDate;
 	private int borderLike;
+	private int borderView;
 	
 	public int getBorderId() {
 		return borderId;
@@ -46,13 +47,24 @@ public class BorderDTO {
 	public void setBorderLike(int borderLike) {
 		this.borderLike = borderLike;
 	}
+	public int getBorderView() {
+		return borderView;
+	}
+	public void setBorderView(int borderView) {
+		this.borderView = borderView;
+	}
 	
+	public BorderDTO() {
+		
+	}
 	@Override
 	public String toString() {
 		return "BorderDTO [borderId=" + borderId + ", userId=" + userId + ", borderTitle=" + borderTitle
 				+ ", borderContent=" + borderContent + ", borderDate=" + borderDate + ", borderLike=" + borderLike
-				+ "]";
+				+ ", borderView=" + borderView + "]";
 	}
 	
+	
+
 	
 }

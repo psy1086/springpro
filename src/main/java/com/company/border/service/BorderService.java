@@ -13,4 +13,5 @@ public interface BorderService {
 	public int borderLike(int borderId) throws Exception;
 	public BorderDTO borderView(int borderId) throws Exception;
 	public int borderCnt(Criteria criteria) throws Exception;
+	public BorderDTO borderViewCnt(int borderId) throws Exception;
 }
