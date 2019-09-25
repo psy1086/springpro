@@ -17,7 +17,7 @@
 					<h3 class="login-heading mb-4">View</h3>
 					<span>
 						<img src="${pageContext.request.contextPath}/resources/content/view.png">${borderDTO.borderView+1 }
-						<a class="btn btn-lg btn-block" href="javascript:like_func();"><img src="${pageContext.request.contextPath}/resources/content/like.png" id="like_img">${borderDTO.borderLike }</a>
+						<a class="btn-lg font-wright-bold mb-2" href="javascript:like_func();"><img src="${pageContext.request.contextPath}/resources/content/like.png" id="like_img">${borderDTO.borderLike }</a>
 					</span>
 					
 					<form:form commandName="borderDTO" action="borderUpdate">
@@ -30,14 +30,20 @@
 						</div>	
 						<div class="div-group">
 							<!-- <input type="button" class="btn btn-lg btn-success btn-block text-uppercase font-weight-bold mb-2" value="back" onClick="history.back(-1)"> -->
-							<a class="btn btn-lg btn-success btn-block text-uppercase -font-seight-bold mb-2" href="border?page=${criteria.page }&perPageNum=${criteria.perPageNum}">back</a>
+							<a class="btn btn-lg btn-success btn-block text-uppercase font-weight-bold mb-2" href="border?page=${criteria.page }&perPageNum=${criteria.perPageNum}">back</a>
 							<%-- <input type="button" class="btn btn-lg btn-warning btn-block text-uppercase font-weight-bold bm-2" value="like" onClick="location.href='borderLike?borderId=${borderDTO.borderId}'"> --%>
 							<%-- <a class="btn btn-lg btn-warning btn-block text-uppercase font-weight-bold mb-2" href="borderLike?borderId=${borderDTO.borderId }">Like</a> --%>
 							<!-- <a href='javascript:like_func()' class="btn btn-lg btn-warning btn-block text-uppercase font-weight-bold mb-2">like</a> -->
+							
 						</div>	
 						<div class="div-group">
 							 <c:if test="${borderDTO.userId eq login.userId}">
 								<a class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" href="borderUpdate?borderId=${borderDTO.borderId }">update</a>
+								
+							</c:if>
+						</div>
+						<div class="div-group">
+							 <c:if test="${borderDTO.userId eq login.userId}">
 								<a class="btn btn-lg btn-danger btn-block text-uppercase font-weight-bold mb-2" href="borderDelete?borderId=${borderDTO.borderId }" >delete</a>
 							</c:if>
 						</div>
@@ -48,7 +54,7 @@
 	</div>
 	
 	<script>
-		function like_func() {
+		/* function like_func() {
 			var borderLike = ${like_img};
 			
 			if(borderLike>0) {
@@ -81,7 +87,6 @@
 					}
 				});
 			});
-		}
-	
+		} */
 	</script>
 	
