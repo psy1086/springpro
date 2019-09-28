@@ -10,11 +10,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.company.border.dto.BorderDTO;
 import com.company.border.dto.Pagination;
 import com.company.border.service.BorderService;
+import com.company.reply.dto.ReplyDTO;
 import com.company.user.dto.UserDTO;
 
 @Controller
@@ -30,7 +30,7 @@ public class BorderController {
 		Pagination pagination = new Pagination();
 		pagination.setCriteria(criteria);
 		pagination.setTotalCnt(borderService.borderCnt(criteria));
-
+		
 		model.addAttribute("borderList",borderService.borderList(criteria));
 		model.addAttribute("pagination", pagination);
 		
@@ -39,7 +39,7 @@ public class BorderController {
 	}
 	
 	@RequestMapping(value="borderWrite")
-	public String borderWrite(@ModelAttribute("borderDTO")BorderDTO borderDTO) throws Exception {
+	public String borderWrite(@ModelAttribute("borderDTO")BorderDTO borderDTO, HttpSession httpSession) throws Exception {
 		logger.info("borderWrite Called");
 		
 		return "otherPage/borderWrite";
@@ -50,9 +50,8 @@ public class BorderController {
 		UserDTO userDTO = (UserDTO)httpSession.getAttribute("login");
 		String userId = userDTO.getUserId();
 		borderDTO.setUserId(userId);
-		
+
 		borderService.borderWrite(borderDTO);
-		
 		return "redirect:border";
 	}
 	@RequestMapping(value="borderView", method=RequestMethod.GET)
@@ -62,6 +61,7 @@ public class BorderController {
 		borderService.borderViewCnt(borderId);
 		model.addAttribute(borderDTO);
 		model.addAttribute(criteria);
+		model.addAttribute("replyDTO", new ReplyDTO());
 		return "otherPage/borderView";
 	}
 	@RequestMapping(value="borderUpdate")

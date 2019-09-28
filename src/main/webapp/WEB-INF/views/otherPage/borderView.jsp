@@ -9,84 +9,144 @@
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/border.css">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/border2.css">
 <div class="container">
-		<header class="jumbotron my-4">
-		</header>
-		<div class="container-fluid">
-			<div class="row no-gutter">
-				<div class="col-md-8 col-lg-6">
-					<h3 class="login-heading mb-4">View</h3>
-					<span>
-						<img src="${pageContext.request.contextPath}/resources/content/view.png">${borderDTO.borderView+1 }
-						<a class="btn-lg font-wright-bold mb-2" href="javascript:like_func();"><img src="${pageContext.request.contextPath}/resources/content/like.png" id="like_img">${borderDTO.borderLike }</a>
-					</span>
+	<header class="jumbotron my-4">
+	</header>
+	<div class="container-fluid">
+		<div class="row no-gutter">
+			<div class="col-md-8 col-lg-6">
+				<h3 class="login-heading mb-4">View</h3>
+				<span>
+					<img src="${pageContext.request.contextPath}/resources/content/view.png">${borderDTO.borderView+1 }
+				</span>
 					
-					<form:form commandName="borderDTO" action="borderUpdate">
-						<div class="form-label-group">
-							<form:input path="borderTitle" id="inputBorderTitle" placeholder="Title" class="boder-control" value="${list.borderTitle }" readonly="true"/>
-							
-						</div>
-						<div class="form-label-group">
-							<form:textarea path="borderContent" id="inputBorderContent" rows="20" class="boder-control" value="${list.borderContent }" readonly="true"/>
-						</div>	
-						<div class="div-group">
-							<!-- <input type="button" class="btn btn-lg btn-success btn-block text-uppercase font-weight-bold mb-2" value="back" onClick="history.back(-1)"> -->
-							<a class="btn btn-lg btn-success btn-block text-uppercase font-weight-bold mb-2" href="border?page=${criteria.page }&perPageNum=${criteria.perPageNum}">back</a>
-							<%-- <input type="button" class="btn btn-lg btn-warning btn-block text-uppercase font-weight-bold bm-2" value="like" onClick="location.href='borderLike?borderId=${borderDTO.borderId}'"> --%>
-							<%-- <a class="btn btn-lg btn-warning btn-block text-uppercase font-weight-bold mb-2" href="borderLike?borderId=${borderDTO.borderId }">Like</a> --%>
-							<!-- <a href='javascript:like_func()' class="btn btn-lg btn-warning btn-block text-uppercase font-weight-bold mb-2">like</a> -->
-							
-						</div>	
-						<div class="div-group">
-							 <c:if test="${borderDTO.userId eq login.userId}">
-								<a class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" href="borderUpdate?borderId=${borderDTO.borderId }">update</a>
-								
-							</c:if>
-						</div>
-						<div class="div-group">
-							 <c:if test="${borderDTO.userId eq login.userId}">
-								<a class="btn btn-lg btn-danger btn-block text-uppercase font-weight-bold mb-2" href="borderDelete?borderId=${borderDTO.borderId }" >delete</a>
-							</c:if>
-						</div>
-					</form:form>
-				</div>
+				<form:form commandName="borderDTO" action="borderUpdate">
+					<div class="form-label-group">
+						<form:input path="borderTitle" id="inputBorderTitle" placeholder="Title" class="boder-control" value="${list.borderTitle }" readonly="true"/>
+					</div>
+					<div class="form-label-group">
+						<form:textarea path="borderContent" id="inputBorderContent" rows="20" class="boder-control" value="${list.borderContent }" readonly="true"/>
+					</div>	
+					<div class="div-group">
+						<a class="btn btn-lg btn-success btn-block text-uppercase font-weight-bold mb-2" href="border?page=${criteria.page }&perPageNum=${criteria.perPageNum}">back</a>
+					</div>	
+					<div class="div-group">
+						<c:if test="${borderDTO.userId eq login.userId}">
+							<a class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" href="borderUpdate?borderId=${borderDTO.borderId }">update</a>
+						</c:if>
+					</div>
+					<div class="div-group">
+						<c:if test="${borderDTO.userId eq login.userId}">
+							<a class="btn btn-lg btn-danger btn-block text-uppercase font-weight-bold mb-2" href="borderDelete?borderId=${borderDTO.borderId }" >delete</a>
+						</c:if>
+					</div>
+				</form:form>
 			</div>
 		</div>
+		
+		<!-- Reply Form {s} -->
+			<c:if test="${not empty login }">
+				<div class="my-3 p-3 bg-white rounded shadow-sm" style="padding-top: 10px">
+					<form:form name="form" id="form" role="form" modelAttribute="replyDTO" method="post">
+					<form:input path="borderId" id="borderId" value="${borderDTO.borderId }" readonly="true"/>
+					<div class="row">
+						<div class="col-sm-10">
+							<form:textarea path="replyContent" id="replyContent" class="form-control" rows="3" placeholder="댓글을 입력해 주세요"></form:textarea>
+						</div>
+						<div class="col-sm-2">
+							<form:input path="userId" class="form-control" id="userId" value="${login.userId }" readonly="true"></form:input>
+							<button type="button" class="btn btn-sm btn-primary" id="btnReplySave" style="width: 100%; margin-top: 10px"> 저 장 </button>
+						</div>
+					</div>
+					</form:form>
+				</div>
+			</c:if>
+			<!-- Reply Form {e} -->
+			<!-- Reply List {s}-->
+			<div class="my-3 p-3 bg-white rounded shadow-sm" style="padding-top: 10px">
+				<h6 class="border-bottom pb-2 mb-0">Reply list</h6>
+				<div id="replyList"></div>
+			</div> 
+			<!-- Reply List {e}-->
 	</div>
+</div>
+
+<script>
+	function showReplyList() {
+		var url ="replyList";
+		var paramData = {"borderId":"${borderDTO.borderId}"};
+		$.ajax({
+			type:'POST',
+			url : url,
+			data : paramData,
+			dataType : 'json',
+			success : function(result) {
+				var htmls = "";
+				if(result.length < 1) {
+					htmls.push("등록된 댓글이 없습니다");
+				}else {
+					$(result).each(function(){
+						htmls += '<div class="media text-muted pt-3" id="rid' + this.borderId + '">';
+	                    htmls += '<svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder:32x32">';
+						htmls += '<title>Placeholder</title>';
+						htmls += '<rect width="100%" height="100%" fill="#007bff"></rect>';
+						htmls += '<text x="50%" fill="#007bff" by=".3em">32x32</text>';
+						htmls += '</svg>';
+						htmls += '<p class="media-body pb-3 mb-0 small lh-125 border-bottom horder-gray">';
+	                    htmls += '<span class="d-block">';
+	                    htmls += '<strong class="text-gray-dark">' + this.userId + '</strong>';
+	                    htmls += '<span style="padding-left: 7px; font-size: 9pt">';
+	                    htmls += '<a href="javascript:void(0)" onclick="fn_editReply(' + this.borderId + ', \'' + this.userId + '\', \'' + this.replyContent + '\' )" style="padding-right:5px">수정</a>';
+	                    htmls += '<a href="javascript:void(0)" onclick="fn_deleteReply(' + this.borderId + ')" >삭제</a>';
+	                    htmls += '</span>';
+	                    htmls += '</span>';
+	                    htmls += this.replyContent;
+	                    htmls += '</p>';
+	                    htmls += '</div>';
+					});
+				}
+				$("#replyList").html(htmls);
+			}
+		});
+	}
+	$(function(){
+	    
+		showReplyList();
+	    
+	});
 	
-	<script>
-		/* function like_func() {
-			var borderLike = ${like_img};
-			
-			if(borderLike>0) {
-				console.log(borderLike);
-				$("#borderLike").prop("src","/resouces/content/like2.png");
-				$(".borderLike").prop('userId',borderLike)
-			}
-			else {
-				console.log(borderLike);
-				$("#borderLike").prop("src","/resouces/content/like.png");
-				$(".borderLike").prop('userId', borderLike)
-			}
-			
-			$(".borderLike").on("click", function() {
-				var that = $(".borderLike");
-				
-				var sendData = {'borderId ' : '${borderDTO.borderId}', 'borderLike' : that.prop('userId')};
-				$.ajax({
-					url : 'borderLike',
-					type : 'POST',
-					data : sendData,
-					success : function(data) {
-						that.prop('userId',data);
-						if(data==1) {
-							$('#borderLike').prop("src","/resouces/content/like2.png");
-						}
-						else {
-							$('#borderLike').prop("src","/resouces/content/like.png");
-						}
-					}
-				});
+	//Reply Write
+	$(document).on('click','#btnReplySave', function() {
+		var writeUrl = "replyWrite";
+		
+		var replyContent = $('#replyContent').val();
+		var userId = $('#userId').val();
+		
+		var paramData = JSON.stringify({"replyContent" : replyContent,
+				"userId" : userId,
+				"borderId" : ${borderDTO.borderId}
 			});
-		} */
-	</script>
+		var headers = {"Content-Type" : "application/json",
+				"X-HTTP-Method-Override" : "POST"};
+		$.ajax({
+			url : writeUrl,
+			headers : headers,
+			data : paramData,
+			type : 'POST',
+			dataType : 'text',
+			success : function(result) {
+				showReplyList();
+				
+				$('#replyContent').val('');
+				$('#userId').val('');
+			},
+			error : function(error) {
+				console.log("Error :" + error);
+			}
+		});
+		
+	});
 	
+</script>
+
+ 	<script src="<c:url value="/resources/vendor/jquery/jquery.min.js" />"></script>
+	<script src="<c:url value="/resources/vendor/jquery/handlebars-v4.3.1.js" />>"></script>   

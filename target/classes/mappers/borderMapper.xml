@@ -35,33 +35,10 @@
 		DELETE FROM border WHERE borderId = #{borderId}
 	</delete>
 	
-	<!-- <update id="borderLike" parameterType="borderDTO">
-		UPDATE border SET borderLike = borderLike+1 WHERE borderId = #{borderId}
-	</update> -->
-	<!-- 
-	<update id="borderLike" parameterType="HashMap">
-		UPDATE likey SET likeId = likeId + 1 WHERE borderId=#{borderId} AND userId=#{userId}
-	</update>
-	<update id="borderLikeCancle" parameterType="HashMap">
-		UPDATE likey SET likeId = 0 WHERE borderId=#{borderId} AND userId=#{userId}
-	</update> -->
-	
 	<update id="borderViewCnt">
 		UPDATE border SET borderView = borderView + 1 WHERE borderId = #{borderId}
 	</update>
-	
-	<insert id="borderLikeCreate">
-		INSERT INTO likey (likeId, borderId, userId, likeCheck) VALUES(
-			0,
-			borderId = #{borderId},
-			userId = #{userId},
-			0
-		)
-	</insert>
-	
-	<select id="borderLikeCnt">
-		SELECT likeId FROM likey WHERE = borderId = #{borderId};
-	</select>
+
 	
 	<select id="borderCnt" resultType="int">
 		SELECT COUNT(borderId) FROM border WHERE borderId > 0

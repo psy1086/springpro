@@ -20,7 +20,6 @@
 				<th>Id</th>
 				<th>Date</th>
 				<th>View</th>
-				<th>Like</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -38,7 +37,6 @@
 								<td><c:out value="${list.userId }" /></td>
 								<td><c:out value="${list.borderDate }"/></td>
 								<td><c:out value="${list.borderView }"/></td>
-								<td><c:out value="${list.borderLike }"/></td>
 						</tr>
 					</c:forEach>
 				</c:when>
