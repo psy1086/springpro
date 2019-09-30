@@ -10,6 +10,7 @@ public class BorderDTO {
 	private Date borderDate;
 	private int borderLike;
 	private int borderView;
+	private int replyCnt;
 	
 	public int getBorderId() {
 		return borderId;
@@ -54,6 +55,13 @@ public class BorderDTO {
 		this.borderView = borderView;
 	}
 	
+	public int getReplyCnt() {
+		return replyCnt;
+	}
+	public void setReplyCnt(int replyCnt) {
+		this.replyCnt = replyCnt;
+	}
+	
 	public BorderDTO() {
 		
 	}
@@ -61,7 +69,8 @@ public class BorderDTO {
 	public String toString() {
 		return "BorderDTO [borderId=" + borderId + ", userId=" + userId + ", borderTitle=" + borderTitle
 				+ ", borderContent=" + borderContent + ", borderDate=" + borderDate + ", borderLike=" + borderLike
-				+ ", borderView=" + borderView + "]";
+				+ ", borderView=" + borderView + ", replyCnt="+replyCnt+"]";
+		
 	}
 	
 	

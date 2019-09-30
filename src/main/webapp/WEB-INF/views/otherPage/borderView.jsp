@@ -17,6 +17,7 @@
 				<h3 class="login-heading mb-4">View</h3>
 				<span>
 					<img src="${pageContext.request.contextPath}/resources/content/view.png">${borderDTO.borderView+1 }
+					<img src="${pageContext.request.contextPath}/resources/content/like2.png">
 				</span>
 					
 				<form:form commandName="borderDTO" action="borderUpdate">
@@ -41,20 +42,18 @@
 					</div>
 				</form:form>
 			</div>
-		</div>
-		
+		</div>	
 		<!-- Reply Form {s} -->
 			<c:if test="${not empty login }">
 				<div class="my-3 p-3 bg-white rounded shadow-sm" style="padding-top: 10px">
 					<form:form name="form" id="form" role="form" modelAttribute="replyDTO" method="post">
-					<form:input path="borderId" id="borderId" value="${borderDTO.borderId }" readonly="true"/>
 					<div class="row">
 						<div class="col-sm-10">
 							<form:textarea path="replyContent" id="replyContent" class="form-control" rows="3" placeholder="댓글을 입력해 주세요"></form:textarea>
 						</div>
 						<div class="col-sm-2">
 							<form:input path="userId" class="form-control" id="userId" value="${login.userId }" readonly="true"></form:input>
-							<button type="button" class="btn btn-sm btn-primary" id="btnReplySave" style="width: 100%; margin-top: 10px"> 저 장 </button>
+							<button type="button" class="btn btn-sm btn-primary" id="replyWrite" style="width: 100%; margin-top: 10px">Write</button>
 						</div>
 					</div>
 					</form:form>
@@ -95,8 +94,8 @@
 	                    htmls += '<span class="d-block">';
 	                    htmls += '<strong class="text-gray-dark">' + this.userId + '</strong>';
 	                    htmls += '<span style="padding-left: 7px; font-size: 9pt">';
-	                    htmls += '<a href="javascript:void(0)" onclick="fn_editReply(' + this.borderId + ', \'' + this.userId + '\', \'' + this.replyContent + '\' )" style="padding-right:5px">수정</a>';
-	                    htmls += '<a href="javascript:void(0)" onclick="fn_deleteReply(' + this.borderId + ')" >삭제</a>';
+	                    htmls += '<a href="javascript:;" onclick="replyUpdate(' + this.borderId + ', \'' + this.userId + '\', \'' + this.replyContent + '\' )" style="padding-right:5px">수정</a>';
+	                    htmls += '<a href="javascript:void(0)" onclick="replyDelete(' + this.borderId + ')" >삭제</a>';
 	                    htmls += '</span>';
 	                    htmls += '</span>';
 	                    htmls += this.replyContent;
@@ -108,6 +107,7 @@
 			}
 		});
 	}
+	
 	$(function(){
 	    
 		showReplyList();
@@ -115,7 +115,7 @@
 	});
 	
 	//Reply Write
-	$(document).on('click','#btnReplySave', function() {
+	$(document).on('click','#replyWrite', function() {
 		var writeUrl = "replyWrite";
 		
 		var replyContent = $('#replyContent').val();
@@ -137,7 +137,6 @@
 				showReplyList();
 				
 				$('#replyContent').val('');
-				$('#userId').val('');
 			},
 			error : function(error) {
 				console.log("Error :" + error);
@@ -145,6 +144,55 @@
 		});
 		
 	});
+	
+	//Reply Update
+	function replyUpdate(borderId, userId, replyContent){
+		var htmls = "";
+		htmls += '<div class="media text-muted pt-3" id="replyId' + replyId + '">';
+		htmls += '<svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder:32x32">';
+		htmls += '<title>Placeholder</title>';
+		htmls += '<rect width="100%" height="100%" fill="#007bff"></rect>';
+		htmls += '<text x="50%" fill="#007bff" dy=".3em">32x32</text>';
+		htmls += '</svg>';
+		htmls += '<p class="media-body pb-3 mb-0 small lh-125 border-bottom horder-gray">';
+		htmls += '<span class="d-block">';
+		htmls += '<strong class="text-gray-dark">' + userId + '</strong>';
+		htmls += '<span style="padding-left: 7px; font-size: 9pt">';
+		htmls += '<a href="javascript:void(0)" onclick="replyUpdateAction(' + replyId + ', \'' + userId + '\')" style="padding-right:5px">저장</a>';
+		htmls += '<a href="javascript:void(0)" onClick="showReplyList()">취소<a>';
+		htmls += '</span>';
+		htmls += '</span>';		
+		htmls += '<textarea name="editContent" id="editContent" class="form-control" rows="3">';
+		htmls += replyContent;
+		htmls += '</textarea>';
+		
+		htmls += '</p>';
+		htmls += '</div>';
+	
+		$('#replyId' + replyId).replaceWith(htmls);
+		$('#replyId' + replyId + ' #editContent').focus();
+	}
+	
+	function replyUpdateAction(replyId, userId) {
+		
+	}
+	
+	function replyDelete(replyId){
+		var paramData = {"replyId": replyId};
+		var deleteUrl = "replyDelete";
+		$.ajax({
+			url: deleteUrl
+			, data : paramData
+			, type : 'POST'
+			, dataType : 'text'
+			, success: function(result){
+				showReplyList();
+			}
+			, error: function(error){
+				console.log("에러 : " + error);
+			}
+		});
+	}
 	
 </script>
 

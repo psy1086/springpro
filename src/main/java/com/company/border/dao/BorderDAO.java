@@ -15,4 +15,5 @@ public interface BorderDAO {
 	public BorderDTO borderView(int borderId) throws Exception;
 	public int borderCnt(Criteria criteria) throws Exception;
 	public void borderViewCnt(int borderId) throws Exception;
+	public void replyCnt(int borderId) throws Exception;
 }

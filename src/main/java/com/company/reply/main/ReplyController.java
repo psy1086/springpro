@@ -8,12 +8,15 @@ import javax.inject.Inject;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.company.border.dto.BorderDTO;
+import com.company.border.service.BorderService;
 import com.company.reply.dto.ReplyDTO;
 import com.company.reply.service.ReplyService;
 
@@ -24,6 +27,8 @@ public class ReplyController {
 	
 	@Inject
 	private ReplyService replyService;
+	@Inject
+	private BorderService borderService;
 	
 	@RequestMapping(value="replyList", method=RequestMethod.POST)
 	public List<ReplyDTO> replyLise(@RequestParam("borderId")int borderId) throws Exception {
@@ -35,7 +40,10 @@ public class ReplyController {
 	public Map<String, Object> replyWrite(@RequestBody ReplyDTO replyDTO) throws Exception {
 		logger.info("Reply Write");
 		Map<String, Object> result = new HashMap<>();
+		int bId =replyDTO.getBorderId();
+		System.out.println(bId);
 		try {
+			borderService.replyCnt(bId);
 			replyService.replyWrite(replyDTO);
 			result.put("status","OK");
 		}catch (Exception e) {
@@ -44,5 +52,21 @@ public class ReplyController {
 		}
 		return result;
 	}
-	
+	@RequestMapping(value="replyUpdate", method=RequestMethod.POST)
+	public Map<String, Object> replyUpdate(@RequestBody ReplyDTO replyDTO) throws Exception {
+		logger.info("reply Update");
+		Map<String, Object> result = new HashMap<>();
+
+		try {
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	@RequestMapping(value="replyDelete")
+	public int replyDelete(@RequestParam("replyId")int replyId) throws Exception {
+		logger.info("reply Delete");
+		return replyService.replyDelete(replyId);
+	}
 }

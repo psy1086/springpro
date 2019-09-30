@@ -66,4 +66,10 @@ public class BorderServiceImpl implements BorderService {
 		return borderDAO.borderView(borderId);
 	}
 	
+	@Override
+	public void replyCnt(int borderId) throws Exception {
+		borderDAO.replyCnt(borderId);
+	}
+	
+	
 }

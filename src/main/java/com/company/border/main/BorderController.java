@@ -15,6 +15,7 @@ import com.company.border.dto.BorderDTO;
 import com.company.border.dto.Pagination;
 import com.company.border.service.BorderService;
 import com.company.reply.dto.ReplyDTO;
+import com.company.reply.service.ReplyService;
 import com.company.user.dto.UserDTO;
 
 @Controller
@@ -30,7 +31,6 @@ public class BorderController {
 		Pagination pagination = new Pagination();
 		pagination.setCriteria(criteria);
 		pagination.setTotalCnt(borderService.borderCnt(criteria));
-		
 		model.addAttribute("borderList",borderService.borderList(criteria));
 		model.addAttribute("pagination", pagination);
 		
