@@ -17,7 +17,7 @@
 				<h3 class="login-heading mb-4">View</h3>
 				<span>
 					<img src="${pageContext.request.contextPath}/resources/content/view.png">${borderDTO.borderView+1 }
-					<img src="${pageContext.request.contextPath}/resources/content/like2.png">
+					<img src="${pageContext.request.contextPath}/resources/content/like2.png">${borderDTO.replyCnt }
 				</span>
 					
 				<form:form commandName="borderDTO" action="borderUpdate">
@@ -46,17 +46,16 @@
 		<!-- Reply Form {s} -->
 			<c:if test="${not empty login }">
 				<div class="my-3 p-3 bg-white rounded shadow-sm" style="padding-top: 10px">
-					<form:form name="form" id="form" role="form" modelAttribute="replyDTO" method="post">
 					<div class="row">
 						<div class="col-sm-10">
-							<form:textarea path="replyContent" id="replyContent" class="form-control" rows="3" placeholder="댓글을 입력해 주세요"></form:textarea>
+							<textarea name="replyContent" id="replyContent" class="form-control" rows="3" placeholder="댓글을 입력해 주세요"></textarea>
 						</div>
 						<div class="col-sm-2">
-							<form:input path="userId" class="form-control" id="userId" value="${login.userId }" readonly="true"></form:input>
-							<button type="button" class="btn btn-sm btn-primary" id="replyWrite" style="width: 100%; margin-top: 10px">Write</button>
+							<input name="userId" class="form-control" id="userId" value="${login.userId }" readonly></input>
+							<button type="button" class="btn btn-sm btn-primary replyWrite" id="replyWrite" style="width: 100%; margin-top: 10px">Write</button>
 						</div>
 					</div>
-					</form:form>
+
 				</div>
 			</c:if>
 			<!-- Reply Form {e} -->
@@ -94,8 +93,8 @@
 	                    htmls += '<span class="d-block">';
 	                    htmls += '<strong class="text-gray-dark">' + this.userId + '</strong>';
 	                    htmls += '<span style="padding-left: 7px; font-size: 9pt">';
-	                    htmls += '<a href="javascript:;" onclick="replyUpdate(' + this.borderId + ', \'' + this.userId + '\', \'' + this.replyContent + '\' )" style="padding-right:5px">수정</a>';
-	                    htmls += '<a href="javascript:void(0)" onclick="replyDelete(' + this.borderId + ')" >삭제</a>';
+	                    htmls += '<a href="javascript:void(0)" onclick="replyUpdate(' + this.replyId + ', \'' + this.userId + ', \'' + this.replyContent + '\' )" style="padding-right:5px">수정</a>';
+	                    htmls += '<a href="javascript:void(0)" onclick="replyDelete(' + this.replyId + ')" >삭제</a>';
 	                    htmls += '</span>';
 	                    htmls += '</span>';
 	                    htmls += this.replyContent;
@@ -146,7 +145,7 @@
 	});
 	
 	//Reply Update
-	function replyUpdate(borderId, userId, replyContent){
+	function replyUpdate(replyId, userId, replyContent){
 		var htmls = "";
 		htmls += '<div class="media text-muted pt-3" id="replyId' + replyId + '">';
 		htmls += '<svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder:32x32">';
@@ -158,7 +157,7 @@
 		htmls += '<span class="d-block">';
 		htmls += '<strong class="text-gray-dark">' + userId + '</strong>';
 		htmls += '<span style="padding-left: 7px; font-size: 9pt">';
-		htmls += '<a href="javascript:void(0)" onclick="replyUpdateAction(' + replyId + ', \'' + userId + '\')" style="padding-right:5px">저장</a>';
+		htmls += '<a href="javascript:void(0)" onclick="fn_updateReply(' + replyId + ', \'' + userId + '\')" style="padding-right:5px">저장</a>';
 		htmls += '<a href="javascript:void(0)" onClick="showReplyList()">취소<a>';
 		htmls += '</span>';
 		htmls += '</span>';		
@@ -168,7 +167,7 @@
 		
 		htmls += '</p>';
 		htmls += '</div>';
-	
+		
 		$('#replyId' + replyId).replaceWith(htmls);
 		$('#replyId' + replyId + ' #editContent').focus();
 	}
@@ -195,6 +194,6 @@
 	}
 	
 </script>
-
+<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
  	<script src="<c:url value="/resources/vendor/jquery/jquery.min.js" />"></script>
 	<script src="<c:url value="/resources/vendor/jquery/handlebars-v4.3.1.js" />>"></script>   
