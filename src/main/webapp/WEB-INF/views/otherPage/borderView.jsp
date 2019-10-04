@@ -19,7 +19,6 @@
 					<img src="${pageContext.request.contextPath}/resources/content/view.png">${borderDTO.borderView+1 }
 					<img src="${pageContext.request.contextPath}/resources/content/like2.png">${borderDTO.replyCnt }
 				</span>
-					
 				<form:form commandName="borderDTO" action="borderUpdate">
 					<div class="form-label-group">
 						<form:input path="borderTitle" id="inputBorderTitle" placeholder="Title" class="boder-control" value="${list.borderTitle }" readonly="true"/>
@@ -43,20 +42,24 @@
 				</form:form>
 			</div>
 		</div>	
+
 		<!-- Reply Form {s} -->
 			<c:if test="${not empty login }">
-				<div class="my-3 p-3 bg-white rounded shadow-sm" style="padding-top: 10px">
-					<div class="row">
-						<div class="col-sm-10">
-							<textarea name="replyContent" id="replyContent" class="form-control" rows="3" placeholder="댓글을 입력해 주세요"></textarea>
+
+					<div class="my-3 p-3 bg-white rounded shadow-sm" style="padding-top: 10px">
+						<div class="row">
+							<div class="col-sm-10">
+								<textarea name="replyContent" id="replyContent" class="form-control" rows="3" placeholder="댓글을 입력해 주세요"></textarea>
+							</div>
+							<div class="col-sm-2">
+								<input type="text" name="borderId" class="form-control" id="borderId" value="${borderDTO.borderId}" readonly>
+								<input name="userId" class="form-control" id="userId" value="${login.userId }" readonly></input>
+								<button type="button" class="btn btn-sm btn-primary replyWrite" id="replyWrite" style="width: 100%; margin-top: 10px">Write</button>
+							</div>
 						</div>
-						<div class="col-sm-2">
-							<input name="userId" class="form-control" id="userId" value="${login.userId }" readonly></input>
-							<button type="button" class="btn btn-sm btn-primary replyWrite" id="replyWrite" style="width: 100%; margin-top: 10px">Write</button>
-						</div>
+	
 					</div>
 
-				</div>
 			</c:if>
 			<!-- Reply Form {e} -->
 			<!-- Reply List {s}-->
@@ -83,7 +86,7 @@
 					htmls.push("등록된 댓글이 없습니다");
 				}else {
 					$(result).each(function(){
-						htmls += '<div class="media text-muted pt-3" id="rid' + this.borderId + '">';
+						htmls += '<div class="media text-muted pt-3" id="replyId' + this.replyId + '">';
 	                    htmls += '<svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder:32x32">';
 						htmls += '<title>Placeholder</title>';
 						htmls += '<rect width="100%" height="100%" fill="#007bff"></rect>';
@@ -93,7 +96,7 @@
 	                    htmls += '<span class="d-block">';
 	                    htmls += '<strong class="text-gray-dark">' + this.userId + '</strong>';
 	                    htmls += '<span style="padding-left: 7px; font-size: 9pt">';
-	                    htmls += '<a href="javascript:void(0)" onclick="replyUpdate(' + this.replyId + ', \'' + this.userId + ', \'' + this.replyContent + '\' )" style="padding-right:5px">수정</a>';
+	                    htmls += '<a href="javascript:void(0)" onclick="replyUpdate(' + this.replyId + ', \'' + this.userId + '\', \'' + this.replyContent + '\' )" style="padding-right:5px">수정</a>';
 	                    htmls += '<a href="javascript:void(0)" onclick="replyDelete(' + this.replyId + ')" >삭제</a>';
 	                    htmls += '</span>';
 	                    htmls += '</span>';
@@ -157,7 +160,7 @@
 		htmls += '<span class="d-block">';
 		htmls += '<strong class="text-gray-dark">' + userId + '</strong>';
 		htmls += '<span style="padding-left: 7px; font-size: 9pt">';
-		htmls += '<a href="javascript:void(0)" onclick="fn_updateReply(' + replyId + ', \'' + userId + '\')" style="padding-right:5px">저장</a>';
+		htmls += '<a href="javascript:void(0)" onclick="replyUpdateAction(' + replyId + ', \'' + userId + '\')" style="padding-right:5px">저장</a>';
 		htmls += '<a href="javascript:void(0)" onClick="showReplyList()">취소<a>';
 		htmls += '</span>';
 		htmls += '</span>';		
@@ -173,7 +176,27 @@
 	}
 	
 	function replyUpdateAction(replyId, userId) {
+		var updateUrl = "replyUpdate"
+		var replyEditContent = $('#editContent').val();
+		var paramData = JSON.stringify({"content": replyEditContent, "replyId": replyId
+		});
 		
+		var headers = {"Content-Type" : "application/json", "X-HTTP-Method-Override" : "POST"};
+		
+		$.ajax({
+			url: updateUrl
+			, headers : headers
+			, data : paramData
+			, type : 'POST'
+			, dataType : 'text'
+			, success: function(result){
+                console.log(result);
+				showReplyList();
+			}
+			, error: function(error){
+				console.log("에러 : " + error);
+			}
+		});
 	}
 	
 	function replyDelete(replyId){

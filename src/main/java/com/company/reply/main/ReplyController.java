@@ -8,6 +8,7 @@ import javax.inject.Inject;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -35,7 +36,7 @@ public class ReplyController {
 	}
 	
 	@RequestMapping(value="replyWrite", method=RequestMethod.POST)
-	public Map<String, Object> replyWrite(@RequestBody ReplyDTO replyDTO) throws Exception {
+	public Map<String, Object> replyWrite(@RequestBody ReplyDTO replyDTO,Model model) throws Exception {
 		logger.info("Reply Write");
 		Map<String, Object> result = new HashMap<>();
 		int bId =replyDTO.getBorderId();
@@ -43,6 +44,7 @@ public class ReplyController {
 		try {
 			borderService.replyCnt(bId);
 			replyService.replyWrite(replyDTO);
+			model.addAttribute("replyId",replyDTO.getReplyId());
 			result.put("status","OK");
 		}catch (Exception e) {
 			e.printStackTrace();
