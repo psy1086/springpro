@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.company.border.dto.BorderDTO;
 import com.company.border.service.BorderService;
 import com.company.reply.dto.ReplyDTO;
 import com.company.reply.service.ReplyService;
@@ -32,6 +33,7 @@ public class ReplyController {
 	@RequestMapping(value="replyList", method=RequestMethod.POST)
 	public List<ReplyDTO> replyLise(@RequestParam("borderId")int borderId) throws Exception {
 		logger.info("Reply List Call");
+		System.out.println(borderId);
 		return replyService.replyList(borderId);
 	}
 	
@@ -53,20 +55,33 @@ public class ReplyController {
 		return result;
 	}
 	@RequestMapping(value="replyUpdate", method=RequestMethod.POST)
-	public Map<String, Object> replyUpdate(@RequestBody ReplyDTO replyDTO) throws Exception {
+	public int replyUpdate(@RequestBody ReplyDTO replyDTO) throws Exception {
 		logger.info("reply Update");
-		Map<String, Object> result = new HashMap<>();
-
-		try {
-			
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		return result;
+		//Map<String, Object> result = new HashMap<>();
+		
+		return replyService.replyUpdate(replyDTO);
 	}
+//	@RequestMapping(value="replyDelete")
+//	public int replyDelete(@RequestParam("replyId")int replyId, @RequestParam("borderId")int borderId) throws Exception {
+//		logger.info("reply Delete");
+////		Map<String, Object> result = new HashMap<>();
+////		try {
+////			System.out.println(borderId);
+////			borderService.replyDeleteCnt(borderId);
+////			replyService.replyDelete(replyId);
+////			result.put("status","OK");
+////		}catch (Exception e) {
+////			e.printStackTrace();
+////			result.put("status", "False");
+////		}
+////		return result;
+//		borderService.replyDeleteCnt(borderId);
+//		return replyService.replyDelete(replyId);
+//	}
 	@RequestMapping(value="replyDelete")
-	public int replyDelete(@RequestParam("replyId")int replyId) throws Exception {
-		logger.info("reply Delete");
+	public int replyDelete(@RequestParam("replyId")int replyId, @RequestParam("borderId")int borderId) throws Exception {
+		logger.info("tttttttttt");
+		borderService.replyDeleteCnt(borderId);
 		return replyService.replyDelete(replyId);
 	}
 }

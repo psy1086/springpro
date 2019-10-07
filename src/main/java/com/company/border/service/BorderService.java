@@ -15,4 +15,5 @@ public interface BorderService {
 	public int borderCnt(Criteria criteria) throws Exception;
 	public BorderDTO borderViewCnt(int borderId) throws Exception;
 	public void replyCnt(int borderId) throws Exception;
+	public void replyDeleteCnt(int borderId) throws Exception;
 }

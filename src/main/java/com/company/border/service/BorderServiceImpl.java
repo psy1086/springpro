@@ -71,5 +71,9 @@ public class BorderServiceImpl implements BorderService {
 		borderDAO.replyCnt(borderId);
 	}
 	
+	@Override
+	public void replyDeleteCnt(int borderId) throws Exception {
+		borderDAO.replyDeleteCnt(borderId);
+	}
 	
 }

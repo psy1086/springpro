@@ -49,6 +49,8 @@
 		UPDATE border SET replyCnt = replyCnt + 1 WHERE borderId = #{borderId}
 	</update>
 	
-	
+	<update id="replyDeleteCnt">
+		UPDATE border SET replyCnt = replyCnt -1 WHERE borderId = #{borderId}
+	</update>
 	
 </mapper>

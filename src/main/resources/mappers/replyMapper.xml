@@ -17,7 +17,7 @@
 	</insert>
 	
 	<update id="replyUpdate" parameterType="replyDTO">
-		UPDATE border SET
+		UPDATE reply SET
 			replyContent = #{replyContent},
 			replyDate = now()
 		WHERE

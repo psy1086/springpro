@@ -75,6 +75,8 @@
 	function showReplyList() {
 		var url ="replyList";
 		var paramData = {"borderId":"${borderDTO.borderId}"};
+		var borderId = ${borderDTO.borderId};
+		
 		$.ajax({
 			type:'POST',
 			url : url,
@@ -83,7 +85,7 @@
 			success : function(result) {
 				var htmls = "";
 				if(result.length < 1) {
-					htmls.push("등록된 댓글이 없습니다");
+					htmls += "등록된 댓글이 없습니다";
 				}else {
 					$(result).each(function(){
 						htmls += '<div class="media text-muted pt-3" id="replyId' + this.replyId + '">';
@@ -96,8 +98,10 @@
 	                    htmls += '<span class="d-block">';
 	                    htmls += '<strong class="text-gray-dark">' + this.userId + '</strong>';
 	                    htmls += '<span style="padding-left: 7px; font-size: 9pt">';
+	                   	htmls += this.replyId
+	                   	htmls += borderId
 	                    htmls += '<a href="javascript:void(0)" onclick="replyUpdate(' + this.replyId + ', \'' + this.userId + '\', \'' + this.replyContent + '\' )" style="padding-right:5px">수정</a>';
-	                    htmls += '<a href="javascript:void(0)" onclick="replyDelete(' + this.replyId + ')" >삭제</a>';
+	                    htmls += '<a href="javascript:void(0)" onclick="replyDelete(' + this.replyId + ',\'' + borderId + '\')" >삭제</a>';
 	                    htmls += '</span>';
 	                    htmls += '</span>';
 	                    htmls += this.replyContent;
@@ -125,7 +129,7 @@
 		
 		var paramData = JSON.stringify({"replyContent" : replyContent,
 				"userId" : userId,
-				"borderId" : ${borderDTO.borderId}
+				"borderId" : "${borderDTO.borderId}"
 			});
 		var headers = {"Content-Type" : "application/json",
 				"X-HTTP-Method-Override" : "POST"};
@@ -178,7 +182,7 @@
 	function replyUpdateAction(replyId, userId) {
 		var updateUrl = "replyUpdate"
 		var replyEditContent = $('#editContent').val();
-		var paramData = JSON.stringify({"content": replyEditContent, "replyId": replyId
+		var paramData = JSON.stringify({"replyContent": replyEditContent, "replyId": replyId
 		});
 		
 		var headers = {"Content-Type" : "application/json", "X-HTTP-Method-Override" : "POST"};
@@ -199,8 +203,11 @@
 		});
 	}
 	
-	function replyDelete(replyId){
-		var paramData = {"replyId": replyId};
+	function replyDelete(replyId,borderId){
+		console.log("replyId : " + replyId);
+		console.log("borderId : " + borderId);
+		var paramData ={"replyId":replyId,
+				"borderId" : borderId};
 		var deleteUrl = "replyDelete";
 		$.ajax({
 			url: deleteUrl
@@ -217,6 +224,6 @@
 	}
 	
 </script>
-<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+	<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
  	<script src="<c:url value="/resources/vendor/jquery/jquery.min.js" />"></script>
-	<script src="<c:url value="/resources/vendor/jquery/handlebars-v4.3.1.js" />>"></script>   
+<%-- 	<script src="<c:url value="/resources/vendor/jquery/handlebars-v4.3.1.js" />>"></script>    --%>
