@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.company.border.dto.BorderDTO;
 import com.company.border.service.BorderService;
 import com.company.reply.dto.ReplyDTO;
 import com.company.reply.service.ReplyService;
+import com.company.user.dto.UserDTO;
 
 @RestController
 public class ReplyController {
@@ -55,11 +55,14 @@ public class ReplyController {
 		return result;
 	}
 	@RequestMapping(value="replyUpdate", method=RequestMethod.POST)
-	public int replyUpdate(@RequestBody ReplyDTO replyDTO) throws Exception {
+	public int replyUpdate(@RequestBody ReplyDTO replyDTO,@RequestBody UserDTO userDTO) throws Exception {
 		logger.info("reply Update");
 		//Map<String, Object> result = new HashMap<>();
+		if(replyDTO.getUserId().equals(userDTO.getUserId())) {
+			return replyService.replyUpdate(replyDTO);
+		}
+		return -1;
 		
-		return replyService.replyUpdate(replyDTO);
 	}
 //	@RequestMapping(value="replyDelete")
 //	public int replyDelete(@RequestParam("replyId")int replyId, @RequestParam("borderId")int borderId) throws Exception {
@@ -80,7 +83,7 @@ public class ReplyController {
 //	}
 	@RequestMapping(value="replyDelete")
 	public int replyDelete(@RequestParam("replyId")int replyId, @RequestParam("borderId")int borderId) throws Exception {
-		logger.info("tttttttttt");
+		logger.info("Reply Delete");
 		borderService.replyDeleteCnt(borderId);
 		return replyService.replyDelete(replyId);
 	}

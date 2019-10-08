@@ -40,10 +40,10 @@
         </p>
         <p>
         	<abbr title="Hompage">H</abbr>:
-        	<a href="mailto:psy1086@github.com">psy1086@github.com</a>
+        	<a href="http://www.github.com/psy1086">www.github.com/psy1086</a>
         </p>
         <p>
-          <abbr title="Hours">H</abbr>: Monday - Friday: 9:00 AM to 5:00 PM
+          <abbr title="Hours">H</abbr>: Monday - Friday: 9:00 AM to 6:00 PM
         </p>
       </div>
     </div>

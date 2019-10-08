@@ -46,17 +46,17 @@ public class HomeController {
 		logger.info("Contact Called..");
 		return "contact";
 	}
-	@RequestMapping(value="mernuF") 
+	@RequestMapping(value="menuF") 
 	public String menuF() {
 		logger.info("MenuF Called");
 		return "menu/menuF";
 	}
-	@RequestMapping(value="mernuS") 
+	@RequestMapping(value="menuS") 
 	public String menuS() {
 		logger.info("MenuS Called");
 		return "menu/menuS";
 	}
-	@RequestMapping(value="mernuT") 
+	@RequestMapping(value="menuT") 
 	public String menuT() {
 		logger.info("MenuT Called");
 		return "menu/menuT";

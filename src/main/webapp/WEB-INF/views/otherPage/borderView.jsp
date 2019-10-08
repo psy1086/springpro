@@ -98,8 +98,6 @@
 	                    htmls += '<span class="d-block">';
 	                    htmls += '<strong class="text-gray-dark">' + this.userId + '</strong>';
 	                    htmls += '<span style="padding-left: 7px; font-size: 9pt">';
-	                   	htmls += this.replyId
-	                   	htmls += borderId
 	                    htmls += '<a href="javascript:void(0)" onclick="replyUpdate(' + this.replyId + ', \'' + this.userId + '\', \'' + this.replyContent + '\' )" style="padding-right:5px">수정</a>';
 	                    htmls += '<a href="javascript:void(0)" onclick="replyDelete(' + this.replyId + ',\'' + borderId + '\')" >삭제</a>';
 	                    htmls += '</span>';

@@ -8,6 +8,7 @@
         <typeAlias type="com.company.border.dto.BorderDTO" alias="borderDTO" />
         <typeAlias type="com.company.user.dto.LoginDTO" alias="loginDTO" />
         <typeAlias type="com.company.reply.dto.ReplyDTO" alias="replyDTO" />
+        <typeAlias type="com.company.menu.dto.MenuDTO" alias="menuDTO" />
     </typeAliases>
     
 </configuration>

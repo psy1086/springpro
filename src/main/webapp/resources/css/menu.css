@@ -1789,9 +1789,9 @@ pre code {
 .table-responsive>.table-bordered {
 	border: 0
 }
-.boder-control {
+.menu-control {
 	display: block;
-	width: 200%;
+	width: 100%;
 	/* height: calc(1.5em + .75rem + 2px); */
 	padding: .375rem .75rem;
 	font-size: 1rem;
@@ -1806,17 +1806,17 @@ pre code {
 }
 
 @media ( prefers-reduced-motion :reduce) {
-	.boder-contorl {
+	.menu-contorl {
 		transition: none
 	}
 }
 
-.boder-contorl::-ms-expand {
+.menu-contorl::-ms-expand {
 	background-color: transparent;
 	border: 0
 }
 
-.boder-contorl:focus {
+.menu-contorl:focus {
 	color: #495057;
 	background-color: #fff;
 	border-color: #80bdff;
@@ -1824,42 +1824,42 @@ pre code {
 	box-shadow: 0 0 0 .2rem rgba(0, 123, 255, .25)
 }
 
-.boder-contorl::-webkit-input-placeholder {
+.menu-contorl::-webkit-input-placeholder {
 	color: #6c757d;
 	opacity: 1
 }
 
-.boder-contorl::-moz-placeholder {
+.menu-contorl::-moz-placeholder {
 	color: #6c757d;
 	opacity: 1
 }
 
-.boder-contorl:-ms-input-placeholder {
+.menu-contorl:-ms-input-placeholder {
 	color: #6c757d;
 	opacity: 1
 }
 
-.boder-contorl::-ms-input-placeholder {
+.menu-contorl::-ms-input-placeholder {
 	color: #6c757d;
 	opacity: 1
 }
 
-.boder-contorl::placeholder {
+.menu-contorl::placeholder {
 	color: #6c757d;
 	opacity: 1
 }
 
-.boder-contorl:disabled, .boder-contorl[readonly] {
+.menu-contorl:disabled, .boder-contorl[readonly] {
 	background-color: #e9ecef;
 	opacity: 1
 }
 
-select.boder-contorl:focus::-ms-value {
+select.menu-contorl:focus::-ms-value {
 	color: #495057;
 	background-color: #fff
 }
 
-.boder-contorl-file, .boder-contorl-range {
+.menu-contorl-file, .menu-contorl-range {
 	display: block;
 	width: 100%
 }
@@ -1886,7 +1886,7 @@ select.boder-contorl:focus::-ms-value {
 	line-height: 1.5
 }
 
-.boder-contorl-plaintext {
+.menu-contorl-plaintext {
 	display: block;
 	width: 100%;
 	padding-top: .375rem;
@@ -1899,13 +1899,13 @@ select.boder-contorl:focus::-ms-value {
 	border-width: 1px 0
 }
 
-.boder-contorl-plaintext.boder-contorl-lg, .boder-contorl-plaintext.boder-contorl-sm
+.menu-contorl-plaintext.menu-contorl-lg, .menu-contorl-plaintext.menu-contorl-sm
 	{
 	padding-right: 0;
 	padding-left: 0
 }
 
-.boder-contorl-sm {
+.menu-contorl-sm {
 	height: calc(1.5em + .5rem + 2px);
 	padding: .25rem .5rem;
 	font-size: .875rem;
@@ -1913,7 +1913,7 @@ select.boder-contorl:focus::-ms-value {
 	border-radius: .2rem
 }
 
-.boder-contorl-lg {
+.menu-contorl-lg {
 	height: calc(1.5em + 1rem + 2px);
 	padding: .5rem 1rem;
 	font-size: 1.25rem;
