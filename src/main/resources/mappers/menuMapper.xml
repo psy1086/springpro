@@ -2,6 +2,59 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.company.mapper.menuMapper">
+	<select id="menuList" resultType="menuDTO">
+		SELECT menuId, userId, menuTitle,menuContent, menuDate,gbsThumbImg FROM menu ORDER BY menuId DESC LIMIT #{pageStart}, #{perPageNum}
+	</select>
+	
+	<select id="menuView" resultType="menuDTO">
+		SELECT menuId, userId, menuTitle, menuContent, menuSubFTitle, menuSubFContent, menuSubSTitle, menuSubSContent, menuSubTTitle, menuSubTContent, menuFootContent, gbsImg
+		 FROM menu WHERE menuId = #{menuId}
+	</select>
+	
+	<insert id="menuWrite" parameterType="menuDTO">
+		INSERT INTO menu (userId, menuTitle, menuContent, menuSubFTitle, menuSubFContent, menuSubSTitle, menuSubSContent, menuSubTTitle, menuSubTContent, menuFootContent, menuDate, gbsImg, gbsThumbImg) VALUES (
+			#{userId},
+			#{menuTitle},
+			#{menuContent},
+			#{menuSubFTitle},
+			#{menuSubFContent},
+			#{menuSubSTitle},
+			#{menuSubSContent},
+			#{menuSubTTitle},
+			#{menuSubTContent},
+			#{menuFootContent},
+			now(),
+			#{gbsImg},
+			#{gbsThumbImg}
+		)
+	</insert>
+	
+	<update id="menuUpdate" parameterType="menuDTO">
+		UPDATE menu SET
+			menuTitle = #{menuTitle},
+			menuContent = #{menuContent},
+			menuSubFTitle = #{menuSubFTitle},
+			menuSubFContent = #{menuSubFContent},
+			menuSubSTitle = #{menuSubSTitle},
+			menuSubSContent = #{menuSubSContent},
+			menuSubTTitle = #{menuSubTTitle},
+			menuSubTContent = #{menuSubTContent},
+			menuFootContent = #{menuFootContent},
+			menuDate = now()
+		WHERE
+			menuId = #{menuId}
+	</update>
+	
+	<delete id="menuDelete" parameterType="int">
+		DELETE FROM menu WHERE menuId = #{menuId}
+	</delete>
+	
+
+	
+	<select id="menuCnt" resultType="int">
+		SELECT COUNT(menuId) FROM border WHERE menuId > 0
+	</select>
+	
 	
 
 	

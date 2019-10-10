@@ -1,5 +1,7 @@
 package com.company.menu.dto;
 
+import java.sql.Date;
+
 public class MenuDTO {
 	int menuId;
 	String userId;
@@ -8,10 +10,13 @@ public class MenuDTO {
 	String menuSubFTitle;
 	String menuSubFContent;
 	String menuSubSTitle;
-	String menuSContent;
-	String menuTTitle;
-	String menuTContent;
+	String menuSubSContent;
+	String menuSubTTitle;
+	String menuSubTContent;
 	String menuFootContent;
+	Date menuDate;
+	String gbsImg;
+	String gbsThumbImg;
 	
 	public int getMenuId() {
 		return menuId;
@@ -55,23 +60,23 @@ public class MenuDTO {
 	public void setMenuSubSTitle(String menuSubSTitle) {
 		this.menuSubSTitle = menuSubSTitle;
 	}
-	public String getMenuSContent() {
-		return menuSContent;
+	public String getMenuSubSContent() {
+		return menuSubSContent;
 	}
-	public void setMenuSContent(String menuSContent) {
-		this.menuSContent = menuSContent;
+	public void setMenuSubSContent(String menuSubSContent) {
+		this.menuSubSContent = menuSubSContent;
 	}
-	public String getMenuTTitle() {
-		return menuTTitle;
+	public String getMenuSubTTitle() {
+		return menuSubTTitle;
 	}
-	public void setMenuTTitle(String menuTTitle) {
-		this.menuTTitle = menuTTitle;
+	public void setMenuSubTTitle(String menuSubTTitle) {
+		this.menuSubTTitle = menuSubTTitle;
 	}
-	public String getMenuTContent() {
-		return menuTContent;
+	public String getMenuSubTContent() {
+		return menuSubTContent;
 	}
-	public void setMenuTContent(String menuTContent) {
-		this.menuTContent = menuTContent;
+	public void setMenuSubTContent(String menuSubTContent) {
+		this.menuSubTContent = menuSubTContent;
 	}
 	public String getMenuFootContent() {
 		return menuFootContent;
@@ -79,12 +84,30 @@ public class MenuDTO {
 	public void setMenuFootContent(String menuFootContent) {
 		this.menuFootContent = menuFootContent;
 	}
+	public Date getMenuDate() {
+		return menuDate;
+	}
+	public void setMenuDate(Date menuDate) {
+		this.menuDate = menuDate;
+	}
+	public String getGbsImg() {
+		return gbsImg;
+	}
+	public void setGbsImg(String gbsImg) {
+		this.gbsImg = gbsImg;
+	}
+	public String getGbsThumbImg() {
+		return gbsThumbImg;
+	}
+	public void setGbsThumbImg(String gbsThumbImg) {
+		this.gbsThumbImg = gbsThumbImg;
+	}
 	@Override
 	public String toString() {
 		return "MenuDTO [menuId=" + menuId + ", userId=" + userId + ", menuTitle=" + menuTitle + ", menuContent="
 				+ menuContent + ", menuSubFTitle=" + menuSubFTitle + ", menuSubFContent=" + menuSubFContent
-				+ ", menuSubSTitle=" + menuSubSTitle + ", menuSContent=" + menuSContent + ", menuTTitle=" + menuTTitle
-				+ ", menuTContent=" + menuTContent + ", menuFootContent=" + menuFootContent + "]";
+				+ ", menuSubSTitle=" + menuSubSTitle + ", menuSubSContent=" + menuSubSContent + ", menuSubTTitle=" + menuSubTTitle
+				+ ", menuSubTContent=" + menuSubTContent + ", menuFootContent=" + menuFootContent + "]";
 	}
 	
 	
