@@ -7,7 +7,7 @@
 	</select>
 	
 	<select id="menuView" resultType="menuDTO">
-		SELECT menuId, userId, menuTitle, menuContent, menuSubFTitle, menuSubFContent, menuSubSTitle, menuSubSContent, menuSubTTitle, menuSubTContent, menuFootContent, gbsImg
+		SELECT menuId, userId, menuTitle, menuContent, menuSubFTitle, menuSubFContent, menuSubSTitle, menuSubSContent, menuSubTTitle, menuSubTContent, menuFootContent, gbsImg, gbsThumbImg
 		 FROM menu WHERE menuId = #{menuId}
 	</select>
 	

@@ -15,14 +15,14 @@
     </ol>
 	<button>Write</button>
 	<a href="fWrtie">test</a>
-   
+   <div class="row">
    <c:choose>
    	<c:when test="${empty menuList }">
    		Empty
    	</c:when>
    	<c:when test="${!empty menuList }">
    		<c:forEach var="menu" items="${menuList }">
-   			<div class="row">
+   			
       			<div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
        				<div class="card h-100">
           			<a href="fMenuView${pagination.makeQuery(pagination.criteria.page)}&menuId=${menu.menuId}"><img class="card-img-top" src="${menu.gbsThumbImg }" alt=""></a>
@@ -34,11 +34,11 @@
           			</div>
         		</div>
       		</div>
-      		</div>
+      		
    		</c:forEach>
    	</c:when>
    </c:choose>
-
+</div>
     <!-- Pagination -->
     <ul class="pagination">
 		<c:if test="${pagination.prev }">

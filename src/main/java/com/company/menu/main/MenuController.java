@@ -62,7 +62,8 @@ public class MenuController {
 		String fileName = null;
 
 		if(file != null) {
-		 fileName =  UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath); 
+		 fileName =  UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
+		 logger.info("FileUpload");
 		} else {
 		 fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
 		}

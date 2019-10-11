@@ -491,6 +491,8 @@ a>code {
 	color: inherit
 }
 
+.oriImg {width:500px; weight:400px;}
+
 kbd {
 	padding: .2rem .4rem;
 	font-size: 87.5%;
