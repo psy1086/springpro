@@ -40,7 +40,8 @@
 			menuSubTTitle = #{menuSubTTitle},
 			menuSubTContent = #{menuSubTContent},
 			menuFootContent = #{menuFootContent},
-			menuDate = now()
+			menuDate = now(),
+			menugbsThumbImg = #{gbsThumbImg}
 		WHERE
 			menuId = #{menuId}
 	</update>

@@ -4,6 +4,7 @@ import java.io.File;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -42,13 +43,14 @@ public class MenuController {
 	}
 	
 	@RequestMapping(value="menuF")
-	public String menuF(Model model, Criteria criteria) throws Exception {
+	public String menuF(Model model, Criteria criteria,MenuDTO menuDTO) throws Exception {
 		logger.info("menuF Call");
 		Pagination pagination = new Pagination();
 		pagination.setCriteria(criteria);
 		pagination.setTotalCnt(menuService.menuCnt(criteria));
 		model.addAttribute("menuList",menuService.menuList(criteria));
 		model.addAttribute("pagination", pagination);
+		model.addAttribute(menuDTO);
 		
 		return "menu/menuF";
 	}
@@ -84,5 +86,49 @@ public class MenuController {
 		model.addAttribute(menuDTO);
 		model.addAttribute(criteria);
 		return "menu/fMenuView";
+	}
+	
+	@RequestMapping(value="fMenuUpdate")
+	public String menuUpdate(@ModelAttribute("menuId")int menuId, Model model, HttpSession httpSession) throws Exception {
+		logger.info("menuUpdate Call");
+		MenuDTO menuDTO = menuService.menuView(menuId);
+		model.addAttribute(menuDTO);
+		httpSession.setAttribute("menuDTO", menuDTO);
+		return "menu/fMenuUpdate";
+	}
+	
+	@RequestMapping(value="menuUpdateAction")
+	public String menuUpdateAction(@ModelAttribute("menuDTO") MenuDTO menuDTO, HttpSession httpSession, MultipartFile file, HttpServletRequest req) throws Exception {
+		logger.info("menuUpdate Action");
+		if(file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
+			new File(uploadPath + req.getParameter("gdsImg")).delete();
+			new File(uploadPath + req.getParameter("gdsThumbImg")).delete();
+			
+			String imgUploadPath = uploadPath + File.separator + "imgUpload";
+			String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
+			String fileName = null;
+			
+			menuDTO.setGbsImg(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+			menuDTO.setGbsThumbImg(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
+		}
+		else {
+			menuDTO.setGbsImg(req.getParameter("gbsImg"));
+			menuDTO.setGbsThumbImg(req.getParameter("gbsThumbImg"));
+		}
+		MenuDTO mo = (MenuDTO)httpSession.getAttribute("menuDTO");
+		int menuId = mo.getMenuId();
+		menuDTO.setMenuId(menuId);
+		menuService.menuUpdate(menuDTO);
+		return "redirect:menuF";
+	}
+	
+	@RequestMapping(value="fMenuDelete")
+	public String menuDelete(@ModelAttribute("menuId")int menuId, HttpServletRequest req) throws Exception {
+		logger.info(menuId+"DeleteAction");
+		new File(uploadPath + req.getParameter("gdsImg")).delete();
+		new File(uploadPath + req.getParameter("gdsThumbImg")).delete();
+		
+		menuService.menuDelete(menuId);
+		return "redirect:menuF";
 	}
 }

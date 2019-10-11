@@ -25,7 +25,7 @@
    			
       			<div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
        				<div class="card h-100">
-          			<a href="fMenuView${pagination.makeQuery(pagination.criteria.page)}&menuId=${menu.menuId}"><img class="card-img-top" src="${menu.gbsThumbImg }" alt=""></a>
+          			<a href="fMenuView${pagination.makeQuery(pagination.criteria.page)}&menuId=${menu.menuId}"><img class="card-img-top" src="${pageContext.request.contextPath}/${menu.gbsThumbImg }" alt=""></a>
           			<div class="card-body">
             			<h4 class="card-title">
               			<a href="fMenuView${pagination.makeQuery(pagination.criteria.page)}&menuId=${menu.menuId}"><c:out value="${menu.menuTitle }" /></a>

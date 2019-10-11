@@ -31,13 +31,13 @@ public class MenuServiceImpl implements MenuService {
 	@Override
 	public int menuUpdate(MenuDTO menuDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return menuDAO.menuUpdate(menuDTO);
 	}
 
 	@Override
 	public int menuDelete(int menuId) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return menuDAO.menuDelete(menuId);
 	}
 
 	@Override

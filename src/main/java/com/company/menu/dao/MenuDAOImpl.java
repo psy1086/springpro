@@ -34,13 +34,13 @@ public class MenuDAOImpl implements MenuDAO {
 	@Override
 	public int menuUpdate(MenuDTO menuDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.update(Namespace+".menuUpdate",menuDTO);
 	}
 
 	@Override
 	public int menuDelete(int menuId) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.delete(Namespace+".menuDelete",menuId);
 	}
 
 	@Override

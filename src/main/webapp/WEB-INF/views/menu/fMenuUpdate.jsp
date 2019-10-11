@@ -25,12 +25,27 @@
 				<div class="row">
 					<div class="col-lg-6">
 						<div class="inputArea">
-							<img src="${pageContext.request.contextPath}/${menuDTO.gbsThumbImg }" class="oriImg"/>
+							<input type="file" id="gdsImg" name="file">
+							<div class="select_img">
+								<img src="${pageContext.request.contextPath}/${menuDTO.gbsThumbImg }" class="oriImg"/>
+								<input type="hidden" name="gbsThumbImg" value="${menuDTO.gbsThumbImg }">
+							</div>
+							<script>
+								$("#gdsImg").change(function(){
+									if(this.files && this.files[0]) {
+										var reader = new FileReader;
+										reader.onload = function(data){
+											$(".select_img img").attr("src", data.target.result).width(500);
+										}
+										reader.readAsDataURL(this.files[0]);
+									}
+								});
+							</script>
 						</div>
 					</div>
 					<div class="col-lg-6">
-						<h2><form:input path="menuTitle" id="inputMenuTitle" placeholder="Title" class="menu-control" value="${menu.menuTitle }" readonly="true"/></h2>
-						<p><form:textarea path="menuContent" class="menu-control" value="${menu.menuContent }" readonly="true" /></p>
+						<h2><form:input path="menuTitle" id="inputMenuTitle" placeholder="Title" class="menu-control" value="${menu.menuTitle }"/></h2>
+						<p><form:textarea path="menuContent" class="menu-control" value="${menu.menuContent }" /></p>
 					</div>
 				</div>
 	
@@ -40,9 +55,9 @@
 						<div class="card h-100 text-center">
 							<img class="card-img-top" src="http://placehold.it/750x450" alt="">
 							<div class="card-body">
-								<h4 class="card-title"><form:input path="menuSubFTitle" class="menu-control" value="${menu.menuSubFTitle }" readonly="true" /></h4>
+								<h4 class="card-title"><form:input path="menuSubFTitle" class="menu-control" value="${menu.menuSubFTitle }"/></h4>
 								<h6 class="card-subtitle mb-2 text-muted">Position</h6>
-								<p class="card-text"><form:textarea path="menuSubFContent" class="menu-control" value="${menu.menuSubFContent }" readonly="true" /></p>
+								<p class="card-text"><form:textarea path="menuSubFContent" class="menu-control" value="${menu.menuSubFContent }"/></p>
 							</div>
 						</div>
 					</div>
@@ -50,9 +65,9 @@
 						<div class="card h-100 text-center">
 							<img class="card-img-top" src="http://placehold.it/750x450" alt="">
 							<div class="card-body">
-								<h4 class="card-title"><form:input path="menuSubSTitle" class="menu-control" value="${menu.menuSubSTitle }" readonly="ture" /></h4>
+								<h4 class="card-title"><form:input path="menuSubSTitle" class="menu-control" value="${menu.menuSubSTitle }"/></h4>
 								<h6 class="card-subtitle mb-2 text-muted">Position</h6>
-								<p class="card-text"><form:textarea path="menuSubSContent" class="menu-control" value="${menu.menuSubSContent }" readonly="true" /></p>
+								<p class="card-text"><form:textarea path="menuSubSContent" class="menu-control" value="${menu.menuSubSContent }"/></p>
 							</div>
 						</div>
 					</div>
@@ -60,9 +75,9 @@
 						<div class="card h-100 text-center">
 							<img class="card-img-top" src="http://placehold.it/750x450" alt="">
 							<div class="card-body">
-								<h4 class="card-title"><form:input path="menuSubTTitle" class="menu-control" value="${menu.menuSubTTitle }" readonly="true" /></h4>
+								<h4 class="card-title"><form:input path="menuSubTTitle" class="menu-control" value="${menu.menuSubTTitle }"/></h4>
 								<h6 class="card-subtitle mb-2 text-muted">Position</h6>
-								<p class="card-text"><form:textarea path="menuSubTContent" class="menu-control" value="${menu.menuSubTContent }" readonly="true" /></p>
+								<p class="card-text"><form:textarea path="menuSubTContent" class="menu-control" value="${menu.menuSubTContent }"/></p>
 							</div>
 						</div>
 					</div>
@@ -70,22 +85,18 @@
 	
 				<h2>Our Customers</h2>
 				<div class="row">
-					<form:textarea path="menuFootContent" class="menu-control" value="${menu.menuFootContent }" readonly="true" />
+					<form:textarea path="menuFootContent" class="menu-control" value="${menu.menuFootContent }"/>
 				</div>
 				<div class="div-group">
 					<a class="btn btn-lg btn-success btn-block text-uppercase font-weight-bold mb-2" href="menuF?page=${criteria.page }&perPageNum=${criteria.perPageNum}">back</a>
 				</div>
 				<div class="div-group">
-					<c:if test="${menuDTO.userId eq login.userId}">
-						<a class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" href="fMenuUpdate?menuId=${menuDTO.menuId }">update</a>
-					</c:if>
-				</div>
-				<div class="div-group">
-					<c:if test="${menuDTO.userId eq login.userId}">
-						<a class="btn btn-lg btn-danger btn-block text-uppercase font-weight-bold mb-2" href="fMenuDelete?menuId=${menuDTO.menuId }" >delete</a>
-					</c:if>
+					<form:button class="btn btn-lg btn-primary btn-block textuppercase font-weight-bold mb-2" type="submit">Update</form:button>
 				</div>
 			</form:form>
 		</div>
 	</div>
 </div>
+
+  <script src="<c:url value="/resources/vendor/jquery/jquery.min.js" />"></script>
+  <script src="<c:url value="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js" />"></script>
