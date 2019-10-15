@@ -7,7 +7,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.company.border.main.Criteria;
+import com.company.menu.main.MenuCriteria;
 import com.company.menu.dto.MenuDTO;
 
 @Repository
@@ -20,7 +20,7 @@ public class MenuDAOImpl implements MenuDAO {
 	private static final String Namespace = "com.company.mapper.menuMapper";
 	
 	@Override
-	public List<MenuDTO> menuList(Criteria criteria) throws Exception {
+	public List<MenuDTO> menuList(MenuCriteria criteria) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(Namespace+".menuList",criteria);
 	}
@@ -50,15 +50,15 @@ public class MenuDAOImpl implements MenuDAO {
 	}
 
 	@Override
-	public int menuCnt(Criteria criteria) throws Exception {
+	public int menuCnt(MenuCriteria criteria) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.selectOne(Namespace+".menuCnt",criteria);
 	}
 
 	@Override
 	public void menuViewCnt(int menuId) throws Exception {
 		// TODO Auto-generated method stub
-
+		sqlSession.update(Namespace+".menuViewCnt",menuId);
 	}
 
 	@Override

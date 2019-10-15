@@ -16,12 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.company.border.dto.BorderDTO;
-import com.company.border.dto.Pagination;
-import com.company.border.main.Criteria;
+import com.company.menu.dto.MenuPagination;
+import com.company.menu.main.MenuCriteria;
+//import com.company.border.dto.Pagination;
+//import com.company.border.main.Criteria;
 import com.company.menu.dto.MenuDTO;
 import com.company.menu.service.MenuService;
-import com.company.reply.dto.ReplyDTO;
 import com.company.user.dto.UserDTO;
 import com.company.utils.UploadFileUtils;
 
@@ -43,9 +43,9 @@ public class MenuController {
 	}
 	
 	@RequestMapping(value="menuF")
-	public String menuF(Model model, Criteria criteria,MenuDTO menuDTO) throws Exception {
+	public String menuF(Model model, MenuCriteria criteria,MenuDTO menuDTO) throws Exception {
 		logger.info("menuF Call");
-		Pagination pagination = new Pagination();
+		MenuPagination pagination = new MenuPagination();
 		pagination.setCriteria(criteria);
 		pagination.setTotalCnt(menuService.menuCnt(criteria));
 		model.addAttribute("menuList",menuService.menuList(criteria));
@@ -80,9 +80,10 @@ public class MenuController {
 		return "redirect:menuF";
 	}
 	@RequestMapping(value="fMenuView", method=RequestMethod.GET)
-	public String menuView(@ModelAttribute("menuId")int menuId,@ModelAttribute("criteria")Criteria criteria, MenuDTO menuDTO, Model model) throws Exception {
+	public String menuView(@ModelAttribute("menuId")int menuId,@ModelAttribute("criteria")MenuCriteria criteria, MenuDTO menuDTO, Model model) throws Exception {
 		logger.info("menuView : " + menuId);
 		menuDTO = menuService.menuView(menuId);
+		menuService.menuViewCnt(menuId);
 		model.addAttribute(menuDTO);
 		model.addAttribute(criteria);
 		return "menu/fMenuView";

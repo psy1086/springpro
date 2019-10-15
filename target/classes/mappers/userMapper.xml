@@ -19,4 +19,8 @@
 	<select id="userLogin" resultType="userDTO">
 		SELECT * FROM user WHERE userId = #{userId}
 	</select>
+	
+	<select id="pwFindAction" resultType="map">
+		SELECT EXISTS (SELECT * FROM user WHERE userId = #{userId} AND userEmail = #{userEmail}) as SUCCESS;
+	</select>
 </mapper>

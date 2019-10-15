@@ -10,19 +10,10 @@
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/menu.css">
 
 <!-- Page Content -->
-  <div class="container">
-
-    <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">About
-      <small>Subheading</small>
-    </h1>
-
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <a href="home">Home</a>
-      </li>
-      <li class="breadcrumb-item active">About</li>
-    </ol>
+ <div class="container">
+	<header class="jumbotron my-4">
+	</header>
+	<h2>Border</h2>
 <form:form commandName="menuDTO" action="menuWriteAction" enctype="multipart/form-data">
     <!-- Intro Content -->
     <div class="row">
@@ -42,7 +33,6 @@
 			   }
 			  });
 			 </script>
-			 <%=request.getRealPath("/") %>
 			</div>
         
       </div>

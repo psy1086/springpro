@@ -6,7 +6,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
-import com.company.border.main.Criteria;
+import com.company.menu.main.MenuCriteria;
 import com.company.menu.dao.MenuDAO;
 import com.company.menu.dto.MenuDTO;
 
@@ -17,7 +17,7 @@ public class MenuServiceImpl implements MenuService {
 	private MenuDAO menuDAO;
 	
 	@Override
-	public List<MenuDTO> menuList(Criteria criteria) throws Exception {
+	public List<MenuDTO> menuList(MenuCriteria criteria) throws Exception {
 		// TODO Auto-generated method stub
 		return menuDAO.menuList(criteria);
 	}
@@ -47,15 +47,15 @@ public class MenuServiceImpl implements MenuService {
 	}
 
 	@Override
-	public int menuCnt(Criteria criteria) throws Exception {
+	public int menuCnt(MenuCriteria criteria) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return menuDAO.menuCnt(criteria);
 	}
 
 	@Override
 	public void menuViewCnt(int menuId) throws Exception {
 		// TODO Auto-generated method stub
-
+		menuDAO.menuViewCnt(menuId);
 	}
 
 	@Override

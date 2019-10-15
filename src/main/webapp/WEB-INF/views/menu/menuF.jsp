@@ -1,20 +1,9 @@
   <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!-- Page Content -->
-  <div class="container">
-
-    <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">Menu 1
-      <small>Subheading</small>
-    </h1>
-
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <a href="home">Home</a>
-      </li>
-      <li class="breadcrumb-item active">Menu1</li>
-    </ol>
-	<button>Write</button>
-	<a href="fWrtie">test</a>
+<div class="container">
+	<header class="jumbotron my-4">
+	</header>
+	<h2>menuF</h2>
    <div class="row">
    <c:choose>
    	<c:when test="${empty menuList }">
@@ -30,7 +19,11 @@
             			<h4 class="card-title">
               			<a href="fMenuView${pagination.makeQuery(pagination.criteria.page)}&menuId=${menu.menuId}"><c:out value="${menu.menuTitle }" /></a>
             			</h4>
-            			<p class="card-text"><c:out value="${menu.menuContent }" /></p>
+            			<p class="card-text"><c:out value="${menu.menuContent }" /></p> <hr />
+            			<p class="card-text">
+            				<c:out value="${menu.userId }" />
+            				<img src="${pageContext.request.contextPath}/resources/content/view.png"><c:out value="${menu.menuViewCnt }" />
+            			</p>
           			</div>
         		</div>
       		</div>
@@ -42,16 +35,18 @@
     <!-- Pagination -->
     <ul class="pagination">
 		<c:if test="${pagination.prev }">
-			<li><a class="page-link" href="menu${pagination.makeQuery(pagination.startPage-1) }">Prev</a></li>
+			<li><a class="page-link" href="menuF${pagination.makeQuery(pagination.startPage-1) }">Prev</a></li>
 		</c:if> 
 		<c:forEach begin="${pagination.startPage}" end="${pagination.endPage }" var="idx">
 			<li <c:out value="${pagination.criteria.page == idx ? 'class=active' : '' }" />>
-				<a href="menu${pagination.makeQuery(idx) }">${idx }</a>
+				<a href="menuF${pagination.makeQuery(idx) }">${idx }</a>
 			</li>
 		</c:forEach>
 		<c:if test="${pagination.next && pagination.endPage > 0 }">
-			<li><a class="page-link" href="menu${pagination.makeQuery(pagination.endPage+1) }">Next</a></li> 
+			<li><a class="page-link" href="menuF${pagination.makeQuery(pagination.endPage+1) }">Next</a></li> 
 		</c:if>
 	</ul>
-
+	<c:if test="${not empty login }">
+		<a href="fWrtie"><button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2">Write</button></a>
+	</c:if>
   </div>

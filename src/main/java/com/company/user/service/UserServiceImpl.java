@@ -1,6 +1,7 @@
 package com.company.user.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -33,9 +34,9 @@ public class UserServiceImpl implements UserService {
 		return userDAO.userLogin(loginDTO);
 	}
 	
-//	@Override
-//	public UserDTO userLogin(UserDTO userDTO) throws Exception {
-//		return userDAO.userLogin(userDTO);
-//	}
+	@Override
+	public int pwFind(Map map) throws Exception {
+		return userDAO.pwFind(map);
+	}
 
 }

@@ -17,7 +17,14 @@ public class MenuDTO {
 	Date menuDate;
 	String gbsImg;
 	String gbsThumbImg;
+	int menuViewCnt;
 	
+	public int getMenuViewCnt() {
+		return menuViewCnt;
+	}
+	public void setMenuViewCnt(int menuViewCnt) {
+		this.menuViewCnt = menuViewCnt;
+	}
 	public int getMenuId() {
 		return menuId;
 	}

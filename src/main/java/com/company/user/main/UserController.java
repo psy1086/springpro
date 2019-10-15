@@ -1,5 +1,8 @@
 package com.company.user.main;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -32,7 +35,6 @@ public class UserController {
 		userDTO.setUserPassword(hashedPw);
 		userService.userRegister(userDTO);
 		return "otherPage/userLogin";
-		
 	}
 
 	@RequestMapping(value="otherPage/userLoginPost", method=RequestMethod.POST)
@@ -45,33 +47,33 @@ public class UserController {
 		}
 		model.addAttribute("user", userDTO);
 	}
-	
-	
-//	@RequestMapping(value="userLogin", method=RequestMethod.POST) 
-//	public ModelAndView userLogin(UserDTO userDTO, HttpServletRequest req) throws Exception {
-//		logger.info("userLogin Action");
-//		ModelAndView mv = new ModelAndView();
-//		HttpSession httpSession = req.getSession();
-//		UserDTO login = userService.userLogin(userDTO);
-//		if(login == null) {
-//			mv.setViewName("otherPage/userLogin");
-//			httpSession.setAttribute("userId", null);
-//			return mv;
-//		}
-//		else {
-//			//mv.addObject("user",userDTO.getUserId());
-//			httpSession.setAttribute("userId", userDTO.getUserId());
-//			mv.setViewName("home");
-//			return mv;
-//		}
-//	}
 
-	
 	@RequestMapping(value="logout")
 	public String logout(HttpSession httpSession) throws Exception {
 		logger.info("Logout Action");
 		httpSession.invalidate();
 		return "home";
+	}
+	
+	@RequestMapping(value="pwFindAction")
+	public String pwFindAction(@ModelAttribute("userId")String userId,@ModelAttribute("userEmail")String userEmail) throws Exception {
+		logger.info("pwFindAction");
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put(userId, userId);
+		map.put(userEmail, userEmail);
+		int result = userService.pwFind(map);
+		if(result > 0) {
+			return "otherPage/rePassword";
+		}
+		else {
+			return "passwordFind";
+		}
+	}
+	
+	@RequestMapping("rePassword")
+	public String rePassword() throws Exception {
+		logger.info("tt");
+		return "";
 	}
 }
 

@@ -9,16 +9,9 @@
 
 
 <div class="container">
-	<h1 class="mt-4 mb-3">menuFView
-		<small>Subheading</small>
-	</h1>
-
-	<ol class="breadcrumb">
-		<li class="breadcrumb-item">
-			<a href="home">Home</a>
-		</li>
-		<li class="breadcrumb-item active">View</li>
-	</ol>
+	<header class="jumbotron my-4">
+	</header>
+	<h2>View</h2>
 	<div class="container-fluid">
 		<div class="row no-gutter">
 			<form:form commandName="menuDTO" action="menuWriteAction" enctype="multipart/form-data">

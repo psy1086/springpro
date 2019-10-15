@@ -67,6 +67,12 @@ public class HomeController {
 		logger.info("Login Called");
 		return "otherPage/userLogin";
 	}
-
+	
+	@RequestMapping(value="passwordFind")
+	public String userPasswordFind(@ModelAttribute("userDTO")UserDTO userDTO) throws Exception {
+		logger.info("Password Find Call");
+		return "otherPage/passwordFind";
+	}
+	
 	
 }

@@ -3,7 +3,7 @@
 
 <mapper namespace="com.company.mapper.menuMapper">
 	<select id="menuList" resultType="menuDTO">
-		SELECT menuId, userId, menuTitle,menuContent, menuDate,gbsThumbImg FROM menu ORDER BY menuId DESC LIMIT #{pageStart}, #{perPageNum}
+		SELECT menuId, userId, menuTitle,menuContent, menuDate,gbsThumbImg, menuViewCnt FROM menu ORDER BY menuId DESC LIMIT #{pageStart}, #{perPageNum}
 	</select>
 	
 	<select id="menuView" resultType="menuDTO">
@@ -49,14 +49,14 @@
 	<delete id="menuDelete" parameterType="int">
 		DELETE FROM menu WHERE menuId = #{menuId}
 	</delete>
-	
 
-	
 	<select id="menuCnt" resultType="int">
-		SELECT COUNT(menuId) FROM border WHERE menuId > 0
+		SELECT COUNT(menuId) FROM menu WHERE menuId > 0
 	</select>
 	
-	
+	<update id="menuViewCnt">
+		UPDATE menu SET menuViewCnt = menuViewCnt + 1 WHERE menuId = #{menuId}
+	</update>	
 
 	
 </mapper>

@@ -1,6 +1,7 @@
 package com.company.user.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -39,8 +40,8 @@ public class UserDAOImpl implements UserDAO {
 		return sqlSession.selectOne(Namespace+".userLogin", loginDTO);
 	}
 	
-//	@Override
-//	public UserDTO userLogin(UserDTO userDTO) throws Exception {
-//		return sqlSession.selectOne(Namespace+".userLogin", userDTO);
-//	}
+	@Override
+	public int pwFind(Map map) throws Exception {
+		return sqlSession.selectOne(Namespace+".pwFindAction", map);
+	}
 }

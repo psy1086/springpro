@@ -2,7 +2,6 @@ package com.company.reply.dao;
 
 import java.util.List;
 
-import com.company.border.main.Criteria;
 import com.company.reply.dto.ReplyDTO;
 
 public interface ReplyDAO {

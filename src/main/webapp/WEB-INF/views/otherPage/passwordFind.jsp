@@ -17,24 +17,23 @@
           <div class="row">
             <div class="col-md-9 col-lg-8 mx-auto">
               <h3 class="login-heading mb-4">Welcome back!</h3>
-              <form:form commandName="userDTO" action="otherPage/userLoginPost">
-              	<div class="form-label-group">
+              <form:form commandName="userDTO" action="pwFindAction">
+				<div class="form-label-group">
               		<form:input path="userId" name="userId" id="inputId" class="form-control" placeholder="Id"/>
               		<label for="inputId">Id</label>
               	</div>
               	
               	<div class="form-label-group">
-              		<form:password path="userPassword" name="userPassword" id="inputPassword" class="form-control" placeholder="Password" />
-              		<label for="inputPassword">Password</label>
+              		<form:input path="userEmail" name="userEmail" id="inputEmail" class="form-control" placeholder="Email" />
+              		<label for="inputEmail">Email</label>
               	</div>
               	
-              	<input type="submit" class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" value="Login">
+              	<input type="submit" class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" value="Reset Password">
               	<div class="text-center">
-              		<a class="small" href="register">Create an Account!</a>
-              		<a class="small" href="passwordFind">Forgot Password?</a>
-              	</div>
+	              	<a class="small" href="register">Create an Account!</a>
+	              	<a class="small" href="userLogin">Already have an account? Login!</a>
+	            </div>
               </form:form>
-
             </div>
           </div>
         </div>
