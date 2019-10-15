@@ -56,24 +56,19 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="pwFindAction")
-	public String pwFindAction(@ModelAttribute("userId")String userId,@ModelAttribute("userEmail")String userEmail) throws Exception {
+	public String pwFindAction(String userId, String userEmail) throws Exception {
 		logger.info("pwFindAction");
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put(userId, userId);
-		map.put(userEmail, userEmail);
+		map.put("userId", userId);
+		map.put("userEmail", userEmail);
 		int result = userService.pwFind(map);
-		if(result > 0) {
+		if(result>0) {
 			return "otherPage/rePassword";
 		}
 		else {
 			return "passwordFind";
 		}
 	}
-	
-	@RequestMapping("rePassword")
-	public String rePassword() throws Exception {
-		logger.info("tt");
-		return "";
-	}
+
 }
 

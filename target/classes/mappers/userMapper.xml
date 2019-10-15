@@ -20,7 +20,7 @@
 		SELECT * FROM user WHERE userId = #{userId}
 	</select>
 	
-	<select id="pwFindAction" resultType="map">
+	<select id="pwFindAction" resultType="int">
 		SELECT EXISTS (SELECT * FROM user WHERE userId = #{userId} AND userEmail = #{userEmail}) as SUCCESS;
 	</select>
 </mapper>
