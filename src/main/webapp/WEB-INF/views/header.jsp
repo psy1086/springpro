@@ -57,6 +57,7 @@
 					<c:if test="${empty login }">
 						<li class="nav-link">Guest</li>
 					</c:if>	
+					
 				</li>
 			</ul>
 		</div>

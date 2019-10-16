@@ -39,4 +39,8 @@ public class UserServiceImpl implements UserService {
 		return userDAO.pwFind(map);
 	}
 
+	@Override
+	public void rePasswordAction(Map map) throws Exception {
+		userDAO.rePasswordAction(map);
+	}
 }

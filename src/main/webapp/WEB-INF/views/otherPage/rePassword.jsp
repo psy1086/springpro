@@ -16,16 +16,16 @@
         <div class="container">
           <div class="row">
             <div class="col-md-9 col-lg-8 mx-auto">
-              <h3 class="login-heading mb-4">Email authentication</h3>
-              <form:form commandName="userDTO" action="pwFindAction">
+              <h3 class="login-heading mb-4">Reset Password</h3>
+              <form:form commandName="userDTO" action="rePasswordAction">
 				<div class="form-label-group">
-              		<form:input path="userId" name="userId" id="inputId" class="form-control" placeholder="Id"/>
+              		<form:input path="userId" name="userId" id="inputId" class="form-control" value="${userDTO.getUserId()}" readonly="true"/>
               		<label for="inputId">Id</label>
               	</div>
-              	
-              	<div class="form-label-group">
-              		<form:input path="userEmail" name="userEmail" id="inputEmail" class="form-control" placeholder="Email" />
-              		<label for="inputEmail">Email</label>
+              	${userDTO.getUserId() }
+				<div class="form-label-group">
+              		<form:password path="userPassword" name="userPassword" id="inputPassword" class="form-control" placeholder="Password"/>
+              		<label for="inputPassword">Password</label>
               	</div>
               	
               	<input type="submit" class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" value="Reset Password">

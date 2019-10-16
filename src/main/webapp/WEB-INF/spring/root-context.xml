@@ -13,33 +13,47 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	
-		 <!-- MySQL dataSource -->
-	    <bean id="dataSource"
-	        class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-	        <property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
-	        <property name="url"
-	            value="jdbc:log4jdbc:mysql://127.0.0.1:3307/springb?useSSL=false&amp;serverTimezone=UTC"></property>
-	        <property name="username" value="root" />
-	        <property name="password" value="1234" />
-	    </bean>
-	 
-	    <!-- mybatis SqlSessionFactoryBean -->
-	    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-	        <property name="dataSource" ref="dataSource" />
-	        <property name="configLocation" value="classpath:/mybatis-config.xml" />
-	        <property name="mapperLocations" value="classpath:mappers/**/*Mapper.xml" />
-	    </bean>
-	    
-	        <!-- mybatis      -->
-	    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate"
-	        destroy-method="clearCache">
-	        <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory" />
-	    </bean>
+	 <!-- MySQL dataSource -->
+    <bean id="dataSource"
+        class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
+        <property name="url"
+            value="jdbc:log4jdbc:mysql://127.0.0.1:3307/springb?useSSL=false&amp;serverTimezone=UTC"></property>
+        <property name="username" value="root" />
+        <property name="password" value="1234" />
+    </bean>
+ 
+    <!-- mybatis SqlSessionFactoryBean -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="configLocation" value="classpath:/mybatis-config.xml" />
+        <property name="mapperLocations" value="classpath:mappers/**/*Mapper.xml" />
+    </bean>
+    
+        <!-- mybatis      -->
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate"
+        destroy-method="clearCache">
+        <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory" />
+    </bean>
 
-  		<!-- transaction -->
-  		<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-  			<property name="dataSource" ref="dataSource" />
-  		</bean>
-  		
-			
+	<!-- transaction -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	 
+   <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="587" />
+		<property name="username" value="andrea122245@gmail.com" />
+		<property name="password" value="andrea1222" />
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.transport.protocol">smtp</prop>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.debug">true</prop>
+			</props>
+		</property>
+	</bean>
+
 </beans>

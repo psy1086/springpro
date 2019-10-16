@@ -13,4 +13,5 @@ public interface UserDAO {
 //	public UserDTO userLogin(UserDTO userDTO) throws Exception;
 	public UserDTO userLogin(LoginDTO loginDTO) throws Exception;
 	public int pwFind(Map map) throws Exception;
+	public void rePasswordAction(Map map) throws Exception;
 }

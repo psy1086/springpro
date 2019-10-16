@@ -23,4 +23,9 @@
 	<select id="pwFindAction" resultType="int">
 		SELECT EXISTS (SELECT * FROM user WHERE userId = #{userId} AND userEmail = #{userEmail}) as SUCCESS;
 	</select>
+	
+	<update id="rePassword" parameterType="userDTO">
+		UPDATE user SET userPassword = #{userPassword} WHERE userId = #{userId}
+	</update>
+	
 </mapper>

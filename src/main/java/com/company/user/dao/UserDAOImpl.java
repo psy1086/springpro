@@ -44,4 +44,9 @@ public class UserDAOImpl implements UserDAO {
 	public int pwFind(Map map) throws Exception {
 		return sqlSession.selectOne(Namespace+".pwFindAction", map);
 	}
+	
+	@Override
+	public void rePasswordAction(Map map) throws Exception {
+		sqlSession.update(Namespace+".rePassword", map);
+	}
 }

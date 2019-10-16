@@ -6,6 +6,7 @@ public class UserDTO {
 	private String userPassword;
 	private String userName;
 	private String userEmail;
+	
 	public String getUserId() {
 		return userId;
 	}
@@ -30,6 +31,7 @@ public class UserDTO {
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
 	}
+
 	@Override
 	public String toString() {
 		return "UserDTO [userId=" + userId + ", userPassword=" + userPassword + ", userName=" + userName
